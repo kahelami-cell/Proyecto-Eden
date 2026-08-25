@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Eden - Área de Piscina</title>
+    
+    <!-- Importando fuentes elegantes desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reseteo básico de márgenes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background-color: #EEF5F9; /* Tono azul hielo muy suave */
+        }
+
+        /* Contenedor principal: utiliza Flexbox para dividir la pantalla */
+        .split-layout {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- MITAD IZQUIERDA: Área de texto --- */
+        .text-side {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #EEF5F9; /* Fondo azulado que reemplaza al crema */
+            position: relative;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 4px;
+            font-size: 0.85rem;
+            color: #2B7A9F; /* Azul medio estilo agua para el subtítulo */
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            color: #0F304B; /* Azul marino profundo y elegante para el título */
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        /* Línea decorativa debajo del título */
+        .divider {
+            width: 100px;
+            height: 4px;
+            background-color: #00A8E8; /* Celeste vibrante de piscina */
+            border: none;
+            border-radius: 2px;
+        }
+
+        /* --- MITAD DERECHA: Área de la imagen --- */
+        .image-side {
+            width: 50%;
+            /* Recuerda poner aquí la foto de las instalaciones de la piscina */
+            background-image: url('hotel.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* --- ELEMENTOS DE LAS ESQUINAS --- */
+        
+        /* Logo superior izquierdo (anclado al lado del texto) */
+        .logo-container {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            background-color: white;
+            /* Sombra ligeramente azulada para armonizar */
+            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.15); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .logo-container img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+
+        /* Botón de menú superior derecho (anclado al lado de la imagen) */
+        .menu-btn {
+            position: absolute;
+            top: 40px;
+            right: 50px;
+            background: rgba(15, 48, 75, 0.5); /* Fondo semitransparente azul marino */
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 12px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.95);
+            color: #0F304B; /* El texto se vuelve azul marino al pasar el cursor */
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="split-layout">
+        
+        <!-- Lado Izquierdo (Texto y Logo) -->
+        <section class="text-side">
+            <!-- Logo fijo en la esquina -->
+            <div class="logo-container">
+                <!-- Reemplaza con la ruta de tu logo -->
+                <img src="logo.png" alt="Logo Hotel Eden">
+            </div>
+
+            <!-- Contenido principal -->
+            <p class="subtitle">Área de Piscina</p>
+            <h1 class="title">HOTEL<br>EDEN</h1>
+            <hr class="divider">
+        </section>
+
+        <!-- Lado Derecho (Imagen y Menú) -->
+        <section class="image-side">
+            <!-- Botón de menú fijo en la esquina -->
+            <button class="menu-btn">MENÚ DE NAVEGACIÓN</button>
+        </section>
+        
+    </div>
+
+</body>
+</html>
