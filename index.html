@@ -150,11 +150,45 @@
             <hr class="divider">
         </section>
 
-        <!-- Lado Derecho (Imagen y Menú) -->
-        <section class="image-side">
-            <!-- Botón de menú fijo en la esquina -->
-            <button class="menu-btn">MENÚ DE NAVEGACIÓN</button>
-        </section>
+<!-- ... Resto del código (sección izquierda) ... -->
+
+<!-- Lado Derecho (Imagen y Menú) -->
+<section class="image-side">
+    <!-- Nuevo Contenedor del menú para el posicionamiento -->
+    <div id="nav-container">
+        <!-- Botón de menú con ID para el script -->
+        <button class="menu-btn" id="menuToggleBtn">MENÚ DE NAVEGACIÓN</button>
+
+        <!-- Nuevo Menú desplegable con ID y elementos (oculto por defecto) -->
+        <ul class="dropdown-menu" id="dropdownNav">
+            <li><a href="#">Piscinas</a></li>
+            <li><a href="#">Áreas Recreativas</a></li>
+            <li><a href="#">Calendario</a></li>
+            <li><a href="#">Clubes</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+        </ul>
+    </div>
+</section>
+</div>
+
+<!-- Nuevo Script de JavaScript para la funcionalidad (al final del body) -->
+<script>
+    // Obtener referencias a los elementos
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const dropdownNav = document.getElementById('dropdownNav');
+
+    // Añadir evento de clic al botón para abrir/cerrar
+    menuToggleBtn.addEventListener('click', function() {
+        dropdownNav.classList.toggle('active');
+    });
+
+    // Cerrar el menú si se hace clic fuera de él
+    window.addEventListener('click', function(event) {
+        if (!menuToggleBtn.contains(event.target) && !dropdownNav.contains(event.target)) {
+            dropdownNav.classList.remove('active');
+        }
+    });
+</script>
         
     </div>
 
