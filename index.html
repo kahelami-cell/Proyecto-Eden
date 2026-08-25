@@ -21,7 +21,7 @@
         body {
             height: 100vh;
             overflow: hidden;
-            background-color: #EEF5F9; /* Tono azul hielo muy suave */
+            background-color: #EEF5F9;
         }
 
         /* Contenedor principal: utiliza Flexbox para dividir la pantalla */
@@ -39,7 +39,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-color: #EEF5F9; /* Fondo azulado que reemplaza al crema */
+            background-color: #EEF5F9; 
             position: relative;
         }
 
@@ -48,7 +48,7 @@
             font-weight: 600;
             letter-spacing: 4px;
             font-size: 0.85rem;
-            color: #2B7A9F; /* Azul medio estilo agua para el subtítulo */
+            color: #2B7A9F; 
             margin-bottom: 15px;
             text-transform: uppercase;
         }
@@ -56,16 +56,15 @@
         .title {
             font-family: 'Cinzel', serif;
             font-size: 4.5rem;
-            color: #0F304B; /* Azul marino profundo y elegante para el título */
+            color: #0F304B; 
             line-height: 1.1;
             margin-bottom: 25px;
         }
 
-        /* Línea decorativa debajo del título */
         .divider {
             width: 100px;
             height: 4px;
-            background-color: #00A8E8; /* Celeste vibrante de piscina */
+            background-color: #00A8E8; 
             border: none;
             border-radius: 2px;
         }
@@ -73,7 +72,6 @@
         /* --- MITAD DERECHA: Área de la imagen --- */
         .image-side {
             width: 50%;
-            /* Recuerda poner aquí la foto de las instalaciones de la piscina */
             background-image: url('hotel.png');
             background-size: cover;
             background-position: center;
@@ -82,7 +80,6 @@
 
         /* --- ELEMENTOS DE LAS ESQUINAS --- */
         
-        /* Logo superior izquierdo (anclado al lado del texto) */
         .logo-container {
             position: absolute;
             top: 40px;
@@ -91,7 +88,6 @@
             height: 85px;
             border-radius: 50%;
             background-color: white;
-            /* Sombra ligeramente azulada para armonizar */
             box-shadow: 0 4px 15px rgba(0, 168, 232, 0.15); 
             display: flex;
             justify-content: center;
@@ -106,12 +102,21 @@
             object-fit: contain;
         }
 
-        /* Botón de menú superior derecho (anclado al lado de la imagen) */
-        .menu-btn {
+        /* --- NUEVO: CONTENEDOR DEL MENÚ --- */
+        /* Ahora el contenedor tiene la posición absoluta en la esquina superior derecha */
+        #nav-container {
             position: absolute;
             top: 40px;
             right: 50px;
-            background: rgba(15, 48, 75, 0.5); /* Fondo semitransparente azul marino */
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Alinea los elementos a la derecha */
+        }
+
+        /* Botón de menú (Se ajustó para heredar la posición de su contenedor) */
+        .menu-btn {
+            background: rgba(15, 48, 75, 0.5);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 12px 28px;
@@ -122,13 +127,60 @@
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(8px);
-            z-index: 10;
         }
 
         .menu-btn:hover {
             background: rgba(255, 255, 255, 0.95);
-            color: #0F304B; /* El texto se vuelve azul marino al pasar el cursor */
+            color: #0F304B;
             border-color: transparent;
+        }
+
+        /* --- NUEVO: ESTILOS DEL MENÚ DESPLEGABLE --- */
+        .dropdown-menu {
+            list-style: none;
+            background: white;
+            margin-top: 10px; /* Separación entre el botón y la caja */
+            width: 100%;
+            min-width: 220px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            
+            /* Oculto por defecto con una animación suave */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        /* Esta clase es la que JavaScript añade para mostrar el menú */
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            border-bottom: 1px solid #EEF5F9;
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none; /* Quita la línea del último elemento */
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #0F304B;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #EEF5F9;
+            color: #00A8E8;
         }
     </style>
 </head>
@@ -138,59 +190,51 @@
         
         <!-- Lado Izquierdo (Texto y Logo) -->
         <section class="text-side">
-            <!-- Logo fijo en la esquina -->
             <div class="logo-container">
-                <!-- Reemplaza con la ruta de tu logo -->
                 <img src="logo.png" alt="Logo Hotel Eden">
             </div>
 
-            <!-- Contenido principal -->
             <p class="subtitle">Área de Piscina</p>
             <h1 class="title">HOTEL<br>EDEN</h1>
             <hr class="divider">
         </section>
 
-<!-- ... Resto del código (sección izquierda) ... -->
+        <!-- Lado Derecho (Imagen y Menú) -->
+        <section class="image-side">
+            <!-- Contenedor del menú para agrupar botón y lista -->
+            <div id="nav-container">
+                <button class="menu-btn" id="menuToggleBtn">MENÚ DE NAVEGACIÓN</button>
 
-<!-- Lado Derecho (Imagen y Menú) -->
-<section class="image-side">
-    <!-- Nuevo Contenedor del menú para el posicionamiento -->
-    <div id="nav-container">
-        <!-- Botón de menú con ID para el script -->
-        <button class="menu-btn" id="menuToggleBtn">MENÚ DE NAVEGACIÓN</button>
+                <!-- Menú desplegable -->
+                <ul class="dropdown-menu" id="dropdownNav">
+                    <li><a href="#">Piscinas</a></li>
+                    <li><a href="#">Áreas Recreativas</a></li>
+                    <li><a href="#">Calendario</a></li>
+                    <li><a href="#">Clubes</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                </ul>
+            </div>
+        </section>
 
-        <!-- Nuevo Menú desplegable con ID y elementos (oculto por defecto) -->
-        <ul class="dropdown-menu" id="dropdownNav">
-            <li><a href="#">Piscinas</a></li>
-            <li><a href="#">Áreas Recreativas</a></li>
-            <li><a href="#">Calendario</a></li>
-            <li><a href="#">Clubes</a></li>
-            <li><a href="#">Sobre Nosotros</a></li>
-        </ul>
-    </div>
-</section>
-</div>
-
-<!-- Nuevo Script de JavaScript para la funcionalidad (al final del body) -->
-<script>
-    // Obtener referencias a los elementos
-    const menuToggleBtn = document.getElementById('menuToggleBtn');
-    const dropdownNav = document.getElementById('dropdownNav');
-
-    // Añadir evento de clic al botón para abrir/cerrar
-    menuToggleBtn.addEventListener('click', function() {
-        dropdownNav.classList.toggle('active');
-    });
-
-    // Cerrar el menú si se hace clic fuera de él
-    window.addEventListener('click', function(event) {
-        if (!menuToggleBtn.contains(event.target) && !dropdownNav.contains(event.target)) {
-            dropdownNav.classList.remove('active');
-        }
-    });
-</script>
-        
     </div>
 
+    <!-- Script de JavaScript para la funcionalidad -->
+    <script>
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const dropdownNav = document.getElementById('dropdownNav');
+
+        // Abrir/cerrar menú al hacer clic en el botón
+        menuToggleBtn.addEventListener('click', function(event) {
+            dropdownNav.classList.toggle('active');
+            event.stopPropagation(); // Evita que el clic cierre el menú inmediatamente
+        });
+
+        // Cerrar el menú si se hace clic en cualquier otro lado de la página
+        window.addEventListener('click', function(event) {
+            if (!dropdownNav.contains(event.target)) {
+                dropdownNav.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
