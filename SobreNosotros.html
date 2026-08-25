@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Verdana', sans-serif; }
+        .hero { 
+            width: 100%; height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('recepcion.jpg') center/cover;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+        }
+        header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; align-items: center; }
+        .logo img { height: 70px; }
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; font-size: 12px; }
+        h1 { font-size: 45px; border-bottom: 4px solid white; padding-bottom: 10px; }
+        /* --- ESTILOS ESPECÍFICOS PARA EL CONTENIDO --- */
+.container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+
+.section-title { text-align: center; margin-bottom: 40px; }
+.section-title h2 { font-size: 32px; color: #2c3e50; text-transform: uppercase; letter-spacing: 2px; }
+.divider { width: 60px; height: 3px; background: #00d2ff; margin: 15px auto; }
+
+.history-text { text-align: center; font-size: 17px; color: #555; margin-bottom: 50px; line-height: 1.8; }
+
+.info-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px; 
+    margin: 40px 0; 
+}
+
+.info-card { 
+    background: #fdfdfd; 
+    padding: 35px; 
+    border-left: 5px solid #00d2ff; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.info-card h3 { color: #2c3e50; margin-bottom: 15px; text-transform: uppercase; font-size: 20px; }
+
+.services-container { background-color: #f4f7f8; padding: 40px; border-radius: 10px; margin-top: 50px; }
+
+.services-list { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 15px; 
+    list-style: none; 
+    margin-top: 25px;
+}
+
+.services-list li { font-size: 15px; color: #444; font-weight: 500; }
+.services-list li::before { content: "✓"; color: #00d2ff; font-weight: bold; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <header>
+            <div class="logo"><img src="logo.png"></div>
+            <nav><ul>
+                <li><a href="Pagina Web primer prototipo.html">INICIO</a></li>
+                <li><a href="Piscinas.html">PISCINAS</a></li>
+                <li><a href="AreasRecreativas.html">AREAS RECREATIVAS</a></li>
+                <li><a href="Calendario.html">CALENDARIOS</a></li>
+                <li><a href="Clubes.html">CLUBES</a></li>
+            </ul>
+        </nav>
+        </header>
+        <p style="margin-bottom: 20px;">NUESTRA HISTORIA</p>
+        <h1>SOBRE NOSOTROS</h1>
+    </div>
+    <main class="container">
+    <div class="section-title">
+        <p style="letter-spacing: 4px; color: #7f8c8d; font-weight: bold; margin-bottom: 10px;">TRADICIÓN Y EXCELENCIA</p>
+        <h2>Nuestra Historia</h2>
+        <div class="divider"></div>
+    </div>
+
+    <div class="history-text">
+        <p>
+            <strong>HOTEL EDEN RESORT</strong> es una empresa de servicios que preserva su nombre para mantener la tradición 
+            y las costumbres de las épocas de auge de la industria minera de Oruro. En su seno recibió a grandes personalidades 
+            extranjeras y nacionales; que después de ardua y sacrificada actividad en las minas adyacentes disfrutaban de las 
+            bondades del antiguo Hotel Eden. Se hospedaron los grandes <strong>varones del estaño</strong> de la época como 
+            Patiño, Aramayo entre otros.
+        </p>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Nuestra Misión</h3>
+            <p>Entregar a nuestros clientes los mejores servicios de hotelería con estándares de calidad a nivel mundial, lugares de esparcimiento y distracción para un descanso pleno. Brindando de esta forma un alto confort y goce a los mismos.</p>
+        </div>
+        <div class="info-card">
+            <h3>Nuestra Visión</h3>
+            <p>Busca ser reconocido como el mejor hotel por brindar las mejores opciones de hotelería y servicios a nivel internacional. Comprometidos siempre con el desarrollo del País.</p>
+        </div>
+    </div>
+
+    <div class="services-container">
+        <div class="section-title" style="margin-bottom: 20px;">
+            <h2>Instalaciones y Servicios</h2>
+            <div class="divider"></div>
+            <p>Contamos con una construcción totalmente nueva conservando la fachada arquitectónica declarada como patrimonio de Oruro.</p>
+        </div>
+
+        <ul class="services-list">
+            <li>Hotelería de Lujo</li>
+            <li>Supermercado</li>
+            <li>Salones de Eventos</li>
+            <li>Gimnasio Equipado</li>
+            <li>Café y Bar</li>
+            <li>Restaurante Gourmet</li>
+            <li>Solarium</li>
+            <li>Piscina y Spa</li>
+            <li>Sauna Seco y Vapor</li>
+            <li>Cancha de Raquet y Wally</li>
+            <li>Cine Privado</li>
+            <li>Salas de Reuniones</li>
+        </ul>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', sans-serif; }
+        .hero { 
+            width: 100%; height: 80vh; 
+            background: linear-gradient(to right, rgba(0,0,0,0.8), transparent), url('piscina2.jpeg') center/cover;
+            display: flex; align-items: center; justify-content: flex-end; padding-right: 10%; color: white;
+        }
+
+        header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; align-items: center; }
+        .logo {
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto; 
+            height: 80px;
+        }
+
+        /* Estilos directos para la imagen del Logo */
+        .logo img {
+            /* Mantenemos el tamaño, pero lo controlamos por altura */
+            height: 80px; /* Ajusta este valor si quieres un logo más o menos grande */
+            width: auto; /* El ancho se ajusta automáticamente para mantener la proporción */
+            object-fit: contain; /* Asegura que la imagen completa se visualice sin distorsión */
+        }
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; font-size: 12px; }
+        h1 { font-size: 60px; text-align: right; }
+        
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <header>
+            <div class="logo"><img src="logo.png"></div>
+            <nav><ul><li><a href="Pagina Web primer prototipo.html">INICIO</a></li><li><a href="Piscinas.html">PISCINAS</a></li><li><a href="Calendario.html">CALENDARIOS</a></li><li><a href="Clubes.html">CLUBES</a></li><li><a href="SobreNosotros.html">SOBRE NOSOTROS</a></li></ul></nav>
+        </header>
+        <div>
+            <h1 style="color: #00d2ff;">AREAS RECREATIVAS</h1>
+            <p style="text-align: right; letter-spacing: 2px;">BIENESTAR • EXCELENCIA</p>
+        </div>
+    </div>
+</body>
+</html>

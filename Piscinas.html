@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PISCINAS</title>
+    <style>
+        /* Restablecemos los márgenes por defecto del navegador */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Sección principal con la imagen de fondo */
+        .seccion-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh; /* Altura de la sección de la imagen */
+            
+            /* Imagen de fondo + un degradado oscuro arriba para que el menú se lea bien */
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 30%), 
+                url('piscina.jpeg'); /* Cambia esta URL por tu imagen */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* La barra de navegación superior */
+        header {
+            display: flex;
+            justify-content: space-between; /* Separa el logo de los enlaces */
+            align-items: center;
+            padding: 20px 50px;
+            width: 100%;
+            position: absolute; /* Esto permite que el menú flote sobre la imagen */
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        /* ----- INICIO DE LOS CAMBIOS DEL LOGO ----- */
+
+        /* Estilos del contenedor del Logo (sin el círculo) */
+        .logo {
+            /* Eliminamos: background-color: white; */
+            /* Eliminamos: border-radius: 50%; */
+            /* Eliminamos: overflow: hidden; */
+            /* Eliminamos: box-shadow: ...; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Mantenemos un tamaño similar, pero sin forma circular */
+            width: auto; /* El contenedor se ajusta al logo */
+            height: 80px; /* Mantenemos la altura total del contenedor original */
+        }
+
+        /* Estilos directos para la imagen del Logo */
+        .logo img {
+            /* Mantenemos el tamaño, pero lo controlamos por altura */
+            height: 80px; /* Ajusta este valor si quieres un logo más o menos grande */
+            width: auto; /* El ancho se ajusta automáticamente para mantener la proporción */
+            object-fit: contain; /* Asegura que la imagen completa se visualice sin distorsión */
+        }
+
+        /* ----- FIN DE LOS CAMBIOS DEL LOGO ----- */
+
+        /* Enlaces de navegación */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px; /* Espacio entre las opciones */
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        /* Efecto al pasar el mouse por encima */
+        nav ul li a:hover {
+            color: #d1d1d1;
+        }
+
+        /* Texto grande en el centro de la imagen (RECREACION) */
+        .contenido-hero {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px; /* Para empujarlo debajo del menú */
+        }
+
+        .contenido-hero .subtitulo {
+            font-size: 14px;
+            letter-spacing: 6px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .contenido-hero h1 {
+            font-size: 64px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para resaltar */
+        }
+
+        /* Estilos para la sección blanca debajo de la imagen */
+        .seccion-blanca {
+            background-color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .seccion-blanca h2 {
+            color: #888;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .seccion-blanca p {
+            color: #aaaaaa;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="seccion-hero">
+        
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Pagina Web primer prototipo.html">INICIO</a></li>
+                    <li><a href="AreasRecreativas.html">AREAS RECREATIVAS</a></li>
+                    <li><a href="Calendario.html">CALENDARIOS</a></li>
+                    <li><a href="Clubes.html">CLUBES</a></li>
+                    <li><a href="SobreNosotros.html">SOBRE NOSOTROS</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="contenido-hero">
+            <p class="subtitulo">CALIDAD - CONFORT - COMODIDAD</p>
+            <h1>PISCINA</h1>
+        </div>
+        
+    </div>
+
+    <section class="seccion-blanca">
+        <h2>NUESTROS AMBIENTES</h2>
+        <p>HOTEL EDEN RESORT ofrece varias áreas para la recreación, estas áreas cumplen con todos los requisitos de calidad para brindar la mejor experiencia de los huéspedes y clientes en general.</p>
+    </section>
+
+</body>
+</html>
