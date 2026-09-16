@@ -19,9 +19,9 @@
         }
 
         body {
-            height: 100vh;
-            overflow: hidden;
-            background-color: #EEF5F9;
+            min-height: 100vh;
+            background-color: #D3E2EF;
+            overflow-x: hidden;
         }
 
         /* Contenedor principal: utiliza Flexbox para dividir la pantalla */
@@ -29,6 +29,9 @@
             display: flex;
             height: 100vh;
             width: 100vw;
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 8px 20px rgba(15, 48, 75, 0.25);
         }
 
         /* --- MITAD IZQUIERDA: Área de texto --- */
@@ -39,7 +42,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-color: #EEF5F9; 
+            background-color: #D3E2EF; 
             position: relative;
         }
 
@@ -62,12 +65,13 @@
         }
 
         .divider {
-            width: 100px;
-            height: 4px;
-            background-color: #00A8E8; 
-            border: none;
-            border-radius: 2px;
-        }
+    width: 80px;
+    height: 4px;
+    background-color: #00A8E8;
+    border: none;
+    border-radius: 2px;
+    margin: 20px auto;
+}
 
         /* --- MITAD DERECHA: Área de la imagen --- */
         .image-side {
@@ -79,7 +83,6 @@
         }
 
         /* --- ELEMENTOS DE LAS ESQUINAS --- */
-        
         .logo-container {
             position: absolute;
             top: 40px;
@@ -94,6 +97,14 @@
             align-items: center;
             overflow: hidden;
             z-index: 10;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(0, 168, 232, 0.3);
         }
 
         .logo-container img {
@@ -102,8 +113,7 @@
             object-fit: contain;
         }
 
-        /* --- NUEVO: CONTENEDOR DEL MENÚ --- */
-        /* Ahora el contenedor tiene la posición absoluta en la esquina superior derecha */
+        /* --- CONTENEDOR DEL MENÚ --- */
         #nav-container {
             position: absolute;
             top: 40px;
@@ -111,10 +121,9 @@
             z-index: 20;
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Alinea los elementos a la derecha */
+            align-items: flex-end;
         }
 
-        /* Botón de menú (Se ajustó para heredar la posición de su contenedor) */
         .menu-btn {
             background: rgba(15, 48, 75, 0.5);
             color: white;
@@ -135,25 +144,22 @@
             border-color: transparent;
         }
 
-        /* --- NUEVO: ESTILOS DEL MENÚ DESPLEGABLE --- */
+        /* --- ESTILOS DEL MENÚ DESPLEGABLE --- */
         .dropdown-menu {
             list-style: none;
             background: white;
-            margin-top: 10px; /* Separación entre el botón y la caja */
+            margin-top: 10px;
             width: 100%;
             min-width: 220px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             border-radius: 4px;
             overflow: hidden;
-            
-            /* Oculto por defecto con una animación suave */
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
         }
 
-        /* Esta clase es la que JavaScript añade para mostrar el menú */
         .dropdown-menu.active {
             opacity: 1;
             visibility: visible;
@@ -165,7 +171,7 @@
         }
 
         .dropdown-menu li:last-child {
-            border-bottom: none; /* Quita la línea del último elemento */
+            border-bottom: none;
         }
 
         .dropdown-menu a {
@@ -182,6 +188,107 @@
             background: #EEF5F9;
             color: #00A8E8;
         }
+
+        /* SECCIÓN INFERIOR DE BIENVENIDA */
+        .main-wrapper { 
+            width: 100%;
+            background-color: #D3E2EF;
+            padding: 80px 20px;
+        }
+
+        .main-content { 
+            text-align: center; 
+            max-width: 1000px; 
+            margin: auto; 
+        }
+
+        .main-content h2 { 
+            font-size: 32px; 
+            color: #2c3e50; 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+        }
+
+        footer { 
+            padding: 30px; 
+            background: #2c3e50; 
+            color: white; 
+            text-align: center; 
+            font-size: 14px; 
+        }
+
+        /* ==========================================
+           ADAPTACIÓN RESPONSIVA PARA CELULARES
+           ========================================== */
+        @media (max-width: 768px) {
+            
+            /* 1. Cambio de estructura dividida a vertical */
+            .split-layout {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .text-side {
+                width: 100%;
+                min-height: 55vh;
+                padding: 110px 20px 40px 20px; /* Padding superior para no pisar el logo/menú */
+            }
+
+            .image-side {
+                width: 100%;
+                height: 280px; /* Altura fija tipo banner para la imagen */
+            }
+
+            /* 2. Reubicación de Logo y Botón de Menú */
+            .logo-container {
+                top: 20px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+            }
+
+            #nav-container {
+                top: 25px;
+                right: 20px;
+            }
+
+            .menu-btn {
+                padding: 10px 18px;
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+            }
+
+            .dropdown-menu {
+                min-width: 190px;
+            }
+
+            /* 3. Escala del texto principal */
+            .title {
+                font-size: 2.8rem;
+                margin-bottom: 15px;
+            }
+
+            .subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            /* 4. Sección inferior y pie de página */
+            .main-wrapper {
+                padding: 45px 20px;
+            }
+
+            .main-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .main-content p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,22 +297,21 @@
         
         <!-- Lado Izquierdo (Texto y Logo) -->
         <section class="text-side">
-            <div class="logo-container">
-                <img src="logo.png" alt="Logo Hotel Eden">
-            </div>
+            <a href="https://www.hoteledenbolivia.com/" class="logo-container" title="Ir a la página principal">
+                <img src="logo.png" alt="Logo del Hotel Eden">
+            </a>
 
             <p class="subtitle">Área de Piscina</p>
             <h1 class="title">HOTEL<br>EDEN</h1>
             <hr class="divider">
+
         </section>
 
         <!-- Lado Derecho (Imagen y Menú) -->
         <section class="image-side">
-            <!-- Contenedor del menú para agrupar botón y lista -->
             <div id="nav-container">
                 <button class="menu-btn" id="menuToggleBtn">MENÚ DE NAVEGACIÓN</button>
 
-                <!-- Menú desplegable -->
                 <ul class="dropdown-menu" id="dropdownNav">
                     <li><a href="Piscinas.html">Piscinas</a></li>
                     <li><a href="AreasRecreativas.html">Areas Recreativas</a></li>
@@ -218,18 +324,27 @@
 
     </div>
 
-    <!-- Script de JavaScript para la funcionalidad -->
+    <section class="main-wrapper">
+        <main class="main-content">
+            <h2>¡Bienvenido a nuestra página principal!</h2>
+            <div class="divider"></div>
+            <p>Este es un diseño web moderno, simple y fácil de navegar. En esta sección puedes colocar el contenido más importante de tu proyecto, una descripción de tu negocio o los artículos de tu blog.</p>
+        </main>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Hotel Eden Resort. Todos los derechos reservados.</p>
+    </footer>
+
     <script>
         const menuToggleBtn = document.getElementById('menuToggleBtn');
         const dropdownNav = document.getElementById('dropdownNav');
 
-        // Abrir/cerrar menú al hacer clic en el botón
         menuToggleBtn.addEventListener('click', function(event) {
             dropdownNav.classList.toggle('active');
-            event.stopPropagation(); // Evita que el clic cierre el menú inmediatamente
+            event.stopPropagation();
         });
 
-        // Cerrar el menú si se hace clic en cualquier otro lado de la página
         window.addEventListener('click', function(event) {
             if (!dropdownNav.contains(event.target)) {
                 dropdownNav.classList.remove('active');
