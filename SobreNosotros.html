@@ -1,123 +1,355 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Hotel Eden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Verdana', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        
+        body {
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
         .hero { 
-            width: 100%; height: 80vh; 
+            width: 100%; height: 60vh; 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('recepcion.jpg') center/cover;
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;
+            text-align: center;
+            position: relative;
         }
-        header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; align-items: center; }
-        .logo img { height: 70px; }
-        nav ul { display: flex; list-style: none; gap: 20px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: bold; font-size: 12px; }
-        h1 { font-size: 45px; border-bottom: 4px solid white; padding-bottom: 10px; }
-        /* --- ESTILOS ESPECÍFICOS PARA EL CONTENIDO --- */
-.container { max-width: 1100px; margin: auto; padding: 60px 20px; }
 
-.section-title { text-align: center; margin-bottom: 40px; }
-.section-title h2 { font-size: 32px; color: #2c3e50; text-transform: uppercase; letter-spacing: 2px; }
-.divider { width: 60px; height: 3px; background: #00d2ff; margin: 15px auto; }
+        header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; align-items: center; z-index: 10; }
+        .logo img { height: 80px; width: auto; object-fit: contain; }
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s ease; }
+        nav ul li a:hover { color: #00A8E8; }
+        
+        .hero .subtitulo { font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; margin-bottom: 10px; color: #EEF5F9; }
+        h1 { font-family: 'Cinzel', serif; font-size: 4.5rem; letter-spacing: 2px; }
 
-.history-text { text-align: center; font-size: 17px; color: #555; margin-bottom: 50px; line-height: 1.8; }
+        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
 
-.info-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 30px; 
-    margin: 40px 0; 
-}
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-family: 'Cinzel', serif; font-size: 2rem; color: #0F304B; text-transform: uppercase; letter-spacing: 2px; }
+        .divider { width: 80px; height: 4px; background: #00A8E8; margin: 15px auto; border-radius: 2px; }
 
-.info-card { 
-    background: #fdfdfd; 
-    padding: 35px; 
-    border-left: 5px solid #00d2ff; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
+        .history-text { text-align: center; font-size: 0.95rem; color: #2B7A9F; margin-bottom: 50px; line-height: 1.8; }
 
-.info-card h3 { color: #2c3e50; margin-bottom: 15px; text-transform: uppercase; font-size: 20px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0; }
 
-.services-container { background-color: #f4f7f8; padding: 40px; border-radius: 10px; margin-top: 50px; }
+        .info-card { background: #EEF5F9; padding: 35px; border-left: 5px solid #00A8E8; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
-.services-list { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 15px; 
-    list-style: none; 
-    margin-top: 25px;
-}
+        .info-card h3 { font-family: 'Cinzel', serif; color: #0F304B; margin-bottom: 15px; text-transform: uppercase; font-size: 1.25rem; }
 
-.services-list li { font-size: 15px; color: #444; font-weight: 500; }
-.services-list li::before { content: "✓"; color: #00d2ff; font-weight: bold; margin-right: 10px; }
+        .services-container { background-color: #EEF5F9; padding: 40px; border-radius: 8px; margin-top: 50px; }
+
+        .services-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; list-style: none; margin-top: 25px; }
+
+        .services-list li { font-size: 0.9rem; color: #0F304B; font-weight: 600; }
+        .services-list li::before { content: "✓"; color: #00A8E8; font-weight: bold; margin-right: 10px; }
+
+        /* MAPA EN RECUADRO ESTILIZADO */
+        .map-section-wrapper {
+            max-width: 1100px;
+            margin: 60px auto 20px auto;
+            padding: 0 20px;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 420px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(15, 48, 75, 0.12);
+            border: 2px solid #00A8E8;
+            background-color: #ffffff;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* SECCIÓN DE CONTACTO */
+        .contact-section {
+            background-color: #f7f9fa;
+            padding: 60px 20px 80px 20px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #555555;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .contact-section .contact-subtitle {
+            font-size: 0.9rem;
+            color: #888888;
+            max-width: 650px;
+            margin: 0 auto 50px auto;
+            line-height: 1.6;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            color: #555555;
+        }
+
+        .contact-item h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #444444;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .contact-item p {
+            font-size: 0.85rem;
+            color: #777777;
+            line-height: 1.6;
+        }
+
+        /* --- MEDIA QUERIES PARA CELULARES Y DISPOSITIVOS MÓVILES --- */
+        @media (max-width: 768px) {
+            header {
+                position: relative;
+                flex-direction: column;
+                padding: 15px 20px;
+                background: rgba(15, 48, 75, 0.95);
+                gap: 12px;
+            }
+
+            .logo img { 
+                height: 60px; 
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 45vh;
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+
+            .hero .subtitulo {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .info-card {
+                padding: 25px 20px;
+            }
+
+            .services-container {
+                padding: 25px 20px;
+            }
+
+            .services-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .map-section-wrapper {
+                margin: 40px auto 10px auto;
+                padding: 0 15px;
+            }
+
+            .map-wrapper {
+                height: 300px;
+            }
+
+            .contact-section {
+                padding: 40px 15px 60px 15px;
+            }
+
+            .contact-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-list {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="hero">
         <header>
-            <div class="logo"><img src="logo.png"></div>
+            <div class="logo"><img src="logo.png" alt="Logo"></div>
             <nav><ul>
-                <li><a href="Pagina Web primer prototipo.html">INICIO</a></li>
+                <li><a href="RediseñoPrincipal.html">INICIO</a></li>
                 <li><a href="Piscinas.html">PISCINAS</a></li>
                 <li><a href="AreasRecreativas.html">AREAS RECREATIVAS</a></li>
                 <li><a href="Calendario.html">CALENDARIOS</a></li>
                 <li><a href="Clubes.html">CLUBES</a></li>
-            </ul>
-        </nav>
+            </ul></nav>
         </header>
-        <p style="margin-bottom: 20px;">NUESTRA HISTORIA</p>
+        <p class="subtitulo">NUESTRA HISTORIA</p>
         <h1>SOBRE NOSOTROS</h1>
     </div>
+
     <main class="container">
-    <div class="section-title">
-        <p style="letter-spacing: 4px; color: #7f8c8d; font-weight: bold; margin-bottom: 10px;">TRADICIÓN Y EXCELENCIA</p>
-        <h2>Nuestra Historia</h2>
-        <div class="divider"></div>
-    </div>
-
-    <div class="history-text">
-        <p>
-            <strong>HOTEL EDEN RESORT</strong> es una empresa de servicios que preserva su nombre para mantener la tradición 
-            y las costumbres de las épocas de auge de la industria minera de Oruro. En su seno recibió a grandes personalidades 
-            extranjeras y nacionales; que después de ardua y sacrificada actividad en las minas adyacentes disfrutaban de las 
-            bondades del antiguo Hotel Eden. Se hospedaron los grandes <strong>varones del estaño</strong> de la época como 
-            Patiño, Aramayo entre otros.
-        </p>
-    </div>
-
-    <div class="info-grid">
-        <div class="info-card">
-            <h3>Nuestra Misión</h3>
-            <p>Entregar a nuestros clientes los mejores servicios de hotelería con estándares de calidad a nivel mundial, lugares de esparcimiento y distracción para un descanso pleno. Brindando de esta forma un alto confort y goce a los mismos.</p>
-        </div>
-        <div class="info-card">
-            <h3>Nuestra Visión</h3>
-            <p>Busca ser reconocido como el mejor hotel por brindar las mejores opciones de hotelería y servicios a nivel internacional. Comprometidos siempre con el desarrollo del País.</p>
-        </div>
-    </div>
-
-    <div class="services-container">
-        <div class="section-title" style="margin-bottom: 20px;">
-            <h2>Instalaciones y Servicios</h2>
+        <div class="section-title">
+            <p style="letter-spacing: 4px; color: #2B7A9F; font-weight: 600; font-size: 0.85rem; margin-bottom: 10px;">TRADICIÓN Y EXCELENCIA</p>
+            <h2>Nuestra Historia</h2>
             <div class="divider"></div>
-            <p>Contamos con una construcción totalmente nueva conservando la fachada arquitectónica declarada como patrimonio de Oruro.</p>
         </div>
 
-        <ul class="services-list">
-            <li>Hotelería de Lujo</li>
-            <li>Supermercado</li>
-            <li>Salones de Eventos</li>
-            <li>Gimnasio Equipado</li>
-            <li>Café y Bar</li>
-            <li>Restaurante Gourmet</li>
-            <li>Solarium</li>
-            <li>Piscina y Spa</li>
-            <li>Sauna Seco y Vapor</li>
-            <li>Cancha de Raquet y Wally</li>
-            <li>Cine Privado</li>
-            <li>Salas de Reuniones</li>
-        </ul>
+        <div class="history-text">
+            <p><strong>HOTEL EDEN RESORT</strong> es una empresa de servicios que preserva su nombre para mantener la tradición y las costumbres de las épocas de auge de la industria minera de Oruro.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Nuestra Misión</h3>
+                <p>Entregar a nuestros clientes los mejores servicios de hotelería con estándares de calidad a nivel mundial, lugares de esparcimiento y distracción para un descanso pleno.</p>
+            </div>
+            <div class="info-card">
+                <h3>Nuestra Visión</h3>
+                <p>Busca ser reconocido como el mejor hotel por brindar las mejores opciones de hotelería y servicios a nivel internacional.</p>
+            </div>
+        </div>
+
+        <div class="services-container">
+            <div class="section-title" style="margin-bottom: 20px;">
+                <h2>Instalaciones y Servicios</h2>
+                <div class="divider"></div>
+            </div>
+
+            <ul class="services-list">
+                <li>Hotelería de Lujo</li>
+                <li>Supermercado</li>
+                <li>Salones de Eventos</li>
+                <li>Gimnasio Equipado</li>
+                <li>Café y Bar</li>
+                <li>Restaurante Gourmet</li>
+                <li>Solarium</li>
+                <li>Piscina y Spa</li>
+                <li>Sauna Seco y Vapor</li>
+                <li>Cancha de Wally</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- MAPA EN RECUADRO ESTILIZADO -->
+    <div class="map-section-wrapper">
+        <div class="map-wrapper">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.158309192451!2d-67.1126786884618!3d-17.964724983084776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e2b0c30932cbcd%3A0x2ff252c4167e42d7!2sHotel%20Eden!5e0!3m2!1ses!2sbo!4v1710000000000!5m2!1ses!2sbo" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
     </div>
-</main>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section class="contact-section">
+        <h2>HOTEL EDEN</h2>
+        <p class="contact-subtitle">
+            No dude en ponerse en contacto con nosotros. Responderemos a sus preguntas y le proporcionaremos la información que necesita.
+        </p>
+
+        <div class="contact-grid">
+            <!-- DIRECCIÓN -->
+            <div class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18"></path>
+                    <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+                    <path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"></path>
+                    <path d="M10 9h4"></path>
+                    <path d="M10 13h4"></path>
+                </svg>
+                <h3>DIRECCIÓN</h3>
+                <p>
+                    c. Bolívar Nro. 777, Esq. Presidente Montes,<br>
+                    Plaza Principal (Central)<br>
+                    Oruro - Bolivia
+                </p>
+            </div>
+
+            <!-- TELÉFONOS -->
+            <div class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <h3>TELÉFONOS</h3>
+                <p>
+                    (591-2) 5-210671, (591-2) 5-210672<br>
+                    (591-2) 5 210673, (591-2) 5-210674
+                </p>
+            </div>
+
+            <!-- E-MAIL -->
+            <div class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="M22 6l-10 7L2 6"></path>
+                </svg>
+                <h3>E-MAIL</h3>
+                <p>info_recep@hoteledenbolivia.com</p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
