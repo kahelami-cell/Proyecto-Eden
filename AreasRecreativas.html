@@ -1,47 +1,516 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Áreas Recreativas - Hotel Eden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', sans-serif; }
-        .hero { 
-            width: 100%; height: 80vh; 
-            background: linear-gradient(to right, rgba(0,0,0,0.8), transparent), url('piscina2.jpeg') center/cover;
-            display: flex; align-items: center; justify-content: flex-end; padding-right: 10%; color: white;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Montserrat', sans-serif; 
         }
-
-        header { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; align-items: center; }
-        .logo {
-            
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: auto; 
-            height: 80px;
-        }
-
-        /* Estilos directos para la imagen del Logo */
-        .logo img {
-            /* Mantenemos el tamaño, pero lo controlamos por altura */
-            height: 80px; /* Ajusta este valor si quieres un logo más o menos grande */
-            width: auto; /* El ancho se ajusta automáticamente para mantener la proporción */
-            object-fit: contain; /* Asegura que la imagen completa se visualice sin distorsión */
-        }
-        nav ul { display: flex; list-style: none; gap: 20px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: bold; font-size: 12px; }
-        h1 { font-size: 60px; text-align: right; }
         
+        body { 
+            background-color: #ffffff; 
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- HERO --- */
+        .hero { 
+            width: 100%; 
+            min-height: 55vh; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%), url('piscina2.jpeg') center/cover;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            color: white;
+            position: relative;
+            padding: 20px;
+        }
+
+        header { 
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 20px 50px; 
+            align-items: center; 
+            z-index: 10;
+        }
+
+        .logo img { 
+            height: 80px; 
+            width: auto; 
+            object-fit: contain; 
+        }
+
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            gap: 25px; 
+        }
+
+        nav ul li a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            letter-spacing: 1.5px; 
+            text-transform: uppercase; 
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover { 
+            color: #00A8E8; 
+        }
+
+        .hero-title-box {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .subtitulo { 
+            letter-spacing: 4px; 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            color: #EEF5F9; 
+            margin-bottom: 10px;
+        }
+
+        h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 3.8rem; 
+            letter-spacing: 2px; 
+            color: #ffffff; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container { 
+            max-width: 1100px; 
+            margin: auto; 
+            padding: 60px 20px; 
+        }
+
+        .section-title { 
+            text-align: center; 
+            margin-bottom: 40px; 
+        }
+
+        .section-title h2 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 2.2rem; 
+            color: #0F304B; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
+
+        .divider { 
+            width: 80px; 
+            height: 4px; 
+            background: linear-gradient(90deg, #0F304B, #00A8E8); 
+            margin: 15px auto; 
+            border-radius: 2px; 
+        }
+
+        /* --- SECCIÓN DESTACADA: CANCHA DE WALLY --- */
+        .wally-feature {
+            background: #EEF5F9;
+            border-radius: 12px;
+            padding: 40px;
+            border-left: 6px solid #00A8E8;
+            box-shadow: 0 10px 25px rgba(15, 48, 75, 0.06);
+            margin-bottom: 60px;
+        }
+
+        .wally-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .wally-text {
+            flex: 1;
+        }
+
+        .wally-feature h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #0F304B;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .wally-feature p {
+            color: #2B7A9F;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* IMAGEN DE TAMAÑO MODERADO */
+        .wally-img-container {
+            flex: 0 0 380px;
+            max-width: 380px;
+        }
+
+        .wally-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #00A8E8;
+            box-shadow: 0 6px 15px rgba(15, 48, 75, 0.12);
+            display: block;
+        }
+
+        .wally-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .spec-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #d0e3f0;
+        }
+
+        .spec-card h4 {
+            color: #0F304B;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .spec-card p {
+            font-size: 0.85rem;
+            color: #555555;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* --- GRID DE OTRAS ÁREAS RECREATIVAS --- */
+        .recreation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .area-card {
+            background: #ffffff;
+            border: 1px solid #EEF5F9;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 168, 232, 0.15);
+        }
+
+        .area-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #0F304B;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .area-card p {
+            font-size: 0.9rem;
+            color: #555555;
+            line-height: 1.7;
+        }
+
+        .area-card .badge {
+            display: inline-block;
+            background-color: #EEF5F9;
+            color: #00A8E8;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        footer { 
+            padding: 30px; 
+            background: #0F304B; 
+            color: white; 
+            text-align: center; 
+            font-size: 14px; 
+        }
+
+        /* --- REGLAS RESPONSIVAS COMPLETAS PARA CELULARES Y TABLETS --- */
+        @media (max-width: 900px) {
+            header {
+                position: relative;
+                flex-direction: column;
+                padding: 15px 15px;
+                background: rgba(15, 48, 75, 0.98);
+                gap: 12px;
+            }
+
+            .logo img { 
+                height: 55px; 
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 12px;
+                width: 100%;
+            }
+
+            nav ul li a { 
+                font-size: 0.72rem; 
+                padding: 4px 6px;
+                display: inline-block;
+            }
+
+            .hero {
+                min-height: 38vh;
+                padding: 30px 15px;
+            }
+
+            .hero-title-box { 
+                margin-top: 15px; 
+            }
+
+            h1 { 
+                font-size: 2rem; 
+                line-height: 1.25; 
+            }
+
+            .subtitulo { 
+                font-size: 0.72rem; 
+                letter-spacing: 2px; 
+            }
+
+            .container {
+                padding: 35px 15px;
+            }
+
+            .section-title h2 { 
+                font-size: 1.4rem; 
+            }
+
+            .wally-feature {
+                padding: 20px 15px;
+                border-left-width: 4px;
+            }
+
+            .wally-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .wally-img-container {
+                flex: none;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .wally-img {
+                height: 200px;
+            }
+
+            .wally-feature h3 {
+                font-size: 1.3rem;
+            }
+
+            .wally-feature p {
+                font-size: 0.88rem;
+                line-height: 1.6;
+            }
+
+            .recreation-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .area-card {
+                padding: 22px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 12px 10px;
+            }
+
+            nav ul {
+                gap: 6px 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.68rem;
+                letter-spacing: 0.8px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .wally-specs {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .wally-img {
+                height: 170px;
+            }
+
+            .area-card h3 {
+                font-size: 1.15rem;
+            }
+
+            .area-card p {
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- HERO -->
     <div class="hero">
         <header>
-            <div class="logo"><img src="logo.png"></div>
-            <nav><ul><li><a href="Pagina Web primer prototipo.html">INICIO</a></li><li><a href="Piscinas.html">PISCINAS</a></li><li><a href="Calendario.html">CALENDARIOS</a></li><li><a href="Clubes.html">CLUBES</a></li><li><a href="SobreNosotros.html">SOBRE NOSOTROS</a></li></ul></nav>
+            <div class="logo"><img src="logo.png" alt="Logo Hotel Eden"></div>
+            <nav>
+                <ul>
+                    <li><a href="RediseñoPrincipal.html">INICIO</a></li>
+                    <li><a href="Piscinas.html">PISCINAS</a></li>
+                    <li><a href="Calendario.html">CALENDARIOS</a></li>
+                    <li><a href="Clubes.html">CLUBES</a></li>
+                    <li><a href="SobreNosotros.html">SOBRE NOSOTROS</a></li>
+                </ul>
+            </nav>
         </header>
-        <div>
-            <h1 style="color: #00d2ff;">AREAS RECREATIVAS</h1>
-            <p style="text-align: right; letter-spacing: 2px;">BIENESTAR • EXCELENCIA</p>
+        <div class="hero-title-box">
+            <p class="subtitulo">BIENESTAR • EXCELENCIA • DEPORTE</p>
+            <h1>ÁREAS RECREATIVAS</h1>
         </div>
     </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
+        
+        <div class="section-title">
+            <p style="letter-spacing: 3px; color: #2B7A9F; font-weight: 600; font-size: 0.8rem; margin-bottom: 8px;">ESPACIOS DISEÑADOS PARA TU ENTRETENIMIENTO</p>
+            <h2>Deporte y Esparcimiento</h2>
+            <div class="divider"></div>
+        </div>
+
+        <!-- SECCIÓN DESTACADA: CANCHA DE WALLY -->
+        <section class="wally-feature">
+            <span class="badge" style="background:#00A8E8; color:#fff; font-size:0.75rem; padding:4px 12px; border-radius:12px; font-weight:600; text-transform:uppercase;">Instalación Estrella</span>
+            
+            <div class="wally-content" style="margin-top: 15px;">
+                <div class="wally-text">
+                    <h3>Cancha Oficial de Wally</h3>
+                    <p>
+                        El <strong>Wallyball</strong> es una de las disciplinas deportivas y recreativas más apasionantes y populares en Bolivia. En Hotel Edén Resort disponemos de una cancha reglamentaria totalmente cerrada, construida bajo estándares técnicos estrictos para garantizar dinamismo, velocidad y seguridad en cada jugada.
+                    </p>
+                    <p>
+                        Equipada con muros de alto rebote, iluminación LED de alta visibilidad y piso sintético engomado, es el punto de encuentro perfecto para torneos ejecutivos o partidos entre amigos.
+                    </p>
+                </div>
+
+                <!-- CONTENEDOR DE LA IMAGEN (TAMAÑO MODERADO) -->
+                <div class="wally-img-container">
+                    <img src="canchawally.jpg" alt="Cancha de Wally Hotel Eden" class="wally-img">
+                </div>
+            </div>
+
+            <div class="wally-specs">
+                <div class="spec-card">
+                    <h4>Piso Especializado</h4>
+                    <p>Superficie sintética de impacto que protege articulaciones durante el juego.</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Ambiente Climatizado</h4>
+                    <p>Temperatura controlada para practicar deporte sin sufrir las inclemencias del clima.</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Equipamiento Incluido</h4>
+                    <p>Acceso a balones oficiales de wallyball y red reglamentaria ajustada.</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Reservas por Hora</h4>
+                    <p>Disponible para huéspedes del hotel y usuarios particulares mediante reserva previa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTRAS ÁREAS RECREATIVAS -->
+        <div class="section-title">
+            <h2>Otros Espacios de Esparcimiento</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="recreation-grid">
+            
+            <!-- GIMNASIO -->
+            <div class="area-card">
+                <span class="badge">Salud y Fitness</span>
+                <h3>Gimnasio Equipado</h3>
+                <p>
+                    Contamos con un gimnasio completo equipado con maquinaria cardiovascular (cintas de correr, elípticas, bicicletas estáticas) y estaciones de musculación y pesas libres. Espacio acondicionado con música ambiental y ventilación óptima para mantener tu rutina de entrenamiento.
+                </p>
+            </div>
+
+            <!-- SOLARIUM -->
+            <div class="area-card">
+                <span class="badge">Relax & Sol</span>
+                <h3>Solarium y Zona de Descanso</h3>
+                <p>
+                    Ubicado junto a la piscina principal, el Solarium ofrece un espacio con reposeras ergonómicas y una estructura acristalada que aprovecha al máximo la radiación solar de la altitud orureña, proporcionando un microclima cálido ideal para relajarse después de nadar.
+                </p>
+            </div>
+
+            <!-- SALÓN DE JUEGOS -->
+            <div class="area-card">
+                <span class="badge">Entretenimiento Familiar</span>
+                <h3>Salón de Juegos y Billar</h3>
+                <p>
+                    Un área pensada para el ocio en grupo que incluye mesas de billar profesional, tenis de mesa (ping pong) y juegos de mesa. Un ambiente distendido para disfrutar de tardes agradables en compañía de amigos o familiares.
+                </p>
+            </div>
+
+            <!-- ÁREA SPA Y SAUNAS -->
+            <div class="area-card">
+                <span class="badge">Salud e Higiene</span>
+                <h3>Sauna Seco y Vapor</h3>
+                <p>
+                    Complemento perfecto para revitalizar el cuerpo tras una jornada deportiva en la cancha de wally o el gimnasio. Cámaras de vapor con esencias naturales y sauna finlandés seco para desintoxicar y relajar la musculatura.
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hotel Eden Resort. Todos los derechos reservados.</p>
+    </footer>
+
 </body>
 </html>
