@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PISCINAS - Hotel Eden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background-color: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        /* --- HERO --- */
+        .seccion-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 30%), 
+                url('piscina.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            height: 80px;
+        }
+        .logo img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #00A8E8;
+        }
+        .contenido-hero {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 0 20px;
+        }
+        .contenido-hero .subtitulo {
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #EEF5F9;
+        }
+        .contenido-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.2rem, 6vw, 4.5rem);
+            letter-spacing: 2px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        /* --- CONTENEDOR PANTALLA COMPLETA --- */
+        .container-full {
+            width: 100%;
+            padding: 60px 4%;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            color: #0F304B;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0F304B, #00A8E8);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        .intro-text {
+            text-align: center;
+            font-size: 1rem;
+            color: #2B7A9F;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+        /* --- GRID DE CUADROS --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        .info-card {
+            background: #EEF5F9;
+            padding: 35px 30px;
+            border-left: 5px solid #00A8E8;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 10px 25px rgba(15, 48, 75, 0.06);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 168, 232, 0.15);
+            background: #f4f8fb;
+        }
+        .info-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #0F304B;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        .info-card p {
+            font-size: 0.92rem;
+            color: #2B7A9F;
+            line-height: 1.6;
+        }
+        /* --- RECUADRO CON CARRUSEL --- */
+        .card-carrusel {
+            padding: 0;
+            overflow: hidden;
+            border-left: none;
+            border-top: 5px solid #00A8E8;
+            border-radius: 12px;
+            position: relative;
+            min-height: 260px;
+            background-color: #0F304B;
+        }
+        .carrusel-slides {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .carrusel-slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .carrusel-slides img.active {
+            opacity: 1;
+        }
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 48, 75, 0.6);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 3;
+        }
+        .carrusel-btn:hover {
+            background: #00A8E8;
+        }
+        .carrusel-btn.prev { left: 10px; }
+        .carrusel-btn.next { right: 10px; }
+        .carrusel-dots {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 3;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .dot.active {
+            background: #00A8E8;
+            width: 18px;
+            border-radius: 4px;
+        }
+        .overlay-titulo {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to top, rgba(15, 48, 75, 0.9), transparent);
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            text-align: center;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+        /* --- SERVICIOS --- */
+        .services-container {
+            width: 100%;
+            background-color: #EEF5F9;
+            padding: 50px 4%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(15, 48, 75, 0.04);
+            border-top: 3px solid #00A8E8;
+        }
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            list-style: none;
+            margin-top: 30px;
+        }
+        .services-list li {
+            font-size: 0.95rem;
+            color: #0F304B;
+            font-weight: 600;
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+        }
+        .services-list li::before {
+            content: "✓";
+            color: #00A8E8;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-right: 12px;
+        }
+        footer { 
+            padding: 30px; 
+            background: #2c3e50; 
+            color: white; 
+            text-align: center; 
+            font-size: 14px; 
+        }
+
+        /* ==========================================
+           ADAPTACIÓN RESPONSIVA FLUIDA UNIFICADA
+           ========================================== */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+                position: relative;
+                background: rgba(15, 48, 75, 0.95);
+            }
+            .logo {
+                height: 60px;
+                margin-bottom: 10px;
+            }
+            .logo img {
+                height: 60px;
+            }
+            nav ul {
+                justify-content: center;
+                gap: 10px 15px;
+            }
+            nav ul li a {
+                font-size: 0.75rem;
+            }
+            .seccion-hero {
+                height: auto;
+                min-height: 50vh;
+                padding-bottom: 40px;
+            }
+            .contenido-hero {
+                margin-top: 20px;
+                padding: 0 15px;
+            }
+            .container-full {
+                padding: 40px 20px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .info-card {
+                padding: 25px 20px;
+            }
+            .card-carrusel {
+                min-height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="seccion-hero">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="AreasRecreativas.html">AREAS RECREATIVAS</a></li>
+                    <li><a href="Calendario.html">CALENDARIOS</a></li>
+                    <li><a href="SobreNosotros.html">SOBRE NOSOTROS</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="contenido-hero">
+            <p class="subtitulo">CALIDAD - CONFORT - COMODIDAD</p>
+            <h1>PISCINA</h1>
+        </div>
+    </div>
+    <main class="container-full">
+        <div class="section-title">
+            <p style="letter-spacing: 4px; color: #2B7A9F; font-weight: 600; font-size: 0.85rem; margin-bottom: 10px;">EXPERIENCIA Y CONEXIÓN</p>
+            <h2>NUESTROS AMBIENTES</h2>
+            <div class="divider"></div>
+        </div>
+        <p class="intro-text">
+            HOTEL EDEN RESORT ofrece instalaciones acuáticas diseñadas con altos estándares de calidad, seguridad y mantenimiento para brindar momentos inolvidables de descanso y recreación a nuestros huéspedes y visitantes.
+        </p>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Piscina Climatizada</h3>
+                <p>Agua a temperatura regulada ideal para el clima de la región, permitiendo disfrutar de un baño placentero en cualquier época del año.</p>
+            </div>
+            <div class="info-card">
+                <h3>Tina de Hidromasaje</h3>
+                <p>Una tina integradas con chorros de presión diseñados para relajar los músculos y ofrecer una experiencia revitalizante.</p>
+            </div>
+            <div class="info-card card-carrusel">
+                <div class="carrusel-slides">
+                    <img src="piscina1.jpeg" class="active" alt="Piscina 1">
+                    <img src="piscina7.jpeg" alt="Hidromasaje">
+                </div>
+                <button class="carrusel-btn prev" onclick="cambiarSlide(-1)">&#10094;</button>
+                <button class="carrusel-btn next" onclick="cambiarSlide(1)">&#10095;</button>
+                <div class="carrusel-dots" id="dots-container"></div>
+                <div class="overlay-titulo">GALERÍA DE INSTALACIONES</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Hotel Eden Resort. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        // SCRIPT DEL CARRUSEL (Mantenido intacto)
+        const slides = document.querySelectorAll('.carrusel-slides img');
+        const dotsContainer = document.getElementById('dots-container');
+        let slideActual = 0;
+        let intervaloAuto;
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => irASlide(index));
+            dotsContainer.appendChild(dot);
+        });
+        const dots = document.querySelectorAll('.dot');
+        function mostrarSlide(index) {
+            slides.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
+            });
+            slideActual = index;
+        }
+        function cambiarSlide(direccion) {
+            let nuevoIndex = slideActual + direccion;
+            if (nuevoIndex >= slides.length) nuevoIndex = 0;
+            if (nuevoIndex < 0) nuevoIndex = slides.length - 1;
+            mostrarSlide(nuevoIndex);
+            reiniciarIntervalo();
+        }
+        function irASlide(index) {
+            mostrarSlide(index);
+            reiniciarIntervalo();
+        }
+        function iniciarAutoSlide() {
+            intervaloAuto = setInterval(() => cambiarSlide(1), 3500);
+        }
+        function reiniciarIntervalo() {
+            clearInterval(intervaloAuto);
+            iniciarAutoSlide();
+        }
+        iniciarAutoSlide();
+    </script>
+</body>
+</html>
