@@ -29,6 +29,10 @@
         nav ul li a { color: white; text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s ease; }
         nav ul li a:hover { color: #00A8E8; }
         
+        .hero-content {
+            margin-top: 40px;
+        }
+
         .hero .subtitulo { font-size: 0.85rem; font-weight: 600; letter-spacing: 4px; margin-bottom: 10px; color: #EEF5F9; }
         h1 { font-family: 'Cinzel', serif; font-size: 4.5rem; letter-spacing: 2px; }
 
@@ -163,7 +167,18 @@
             .hero {
                 height: auto;
                 min-height: 45vh;
-                padding: 40px 20px;
+                padding: 0; /* Elimina el padding para que el header toque los bordes */
+                justify-content: flex-start; /* Mantiene el header arriba y evita que se centre a la fuerza */
+            }
+
+            .hero-content {
+                margin-top: 0;
+                padding: 30px 15px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
             h1 {
@@ -243,8 +258,10 @@
                 <li><a href="Calendario.html">CALENDARIOS</a></li>
             </ul></nav>
         </header>
-        <p class="subtitulo">NUESTRA HISTORIA</p>
-        <h1>SOBRE NOSOTROS</h1>
+        <div class="hero-content">
+            <p class="subtitulo">NUESTRA HISTORIA</p>
+            <h1>SOBRE NOSOTROS</h1>
+        </div>
     </div>
 
     <main class="container">
