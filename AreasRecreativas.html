@@ -257,135 +257,107 @@
             text-align: center; 
             font-size: 14px; 
         }
+/* --- REGLAS RESPONSIVAS CORREGIDAS PARA CELULARES Y TABLETS --- */
+@media (max-width: 900px) {
+    .hero {
+        min-height: 45vh;
+        padding: 0; 
+        justify-content: flex-start; 
+    }
 
-        /* --- REGLAS RESPONSIVAS COMPLETAS PARA CELULARES Y TABLETS --- */
-        @media (max-width: 900px) {
-            header {
-                position: relative;
-                flex-direction: column;
-                padding: 15px 15px;
-                background: rgba(15, 48, 75, 0.98);
-                gap: 12px;
-            }
+    header {
+        position: relative;
+        width: 100%;
+        flex-direction: column;
+        padding: 15px 15px;
+        background: rgba(15, 48, 75, 0.98);
+        gap: 12px;
+    }
 
-            .logo img { 
-                height: 55px; 
-            }
+    .logo img { 
+        height: 55px; 
+    }
 
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px 12px;
-                width: 100%;
-            }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 12px;
+        width: 100%;
+    }
 
-            nav ul li a { 
-                font-size: 0.72rem; 
-                padding: 4px 6px;
-                display: inline-block;
-            }
+    nav ul li a { 
+        font-size: 0.72rem; 
+        padding: 4px 6px;
+        display: inline-block;
+    }
 
-            .hero {
-                min-height: 38vh;
-                padding: 30px 15px;
-            }
+    .hero-title-box { 
+        margin-top: 0;
+        padding: 30px 15px;
+        flex-grow: 1; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-            .hero-title-box { 
-                margin-top: 15px; 
-            }
+    h1 { 
+        font-size: 2rem; 
+        line-height: 1.25; 
+    }
 
-            h1 { 
-                font-size: 2rem; 
-                line-height: 1.25; 
-            }
+    .subtitulo { 
+        font-size: 0.72rem; 
+        letter-spacing: 2px; 
+    }
 
-            .subtitulo { 
-                font-size: 0.72rem; 
-                letter-spacing: 2px; 
-            }
+    .container {
+        padding: 35px 15px;
+    }
 
-            .container {
-                padding: 35px 15px;
-            }
+    .section-title h2 { 
+        font-size: 1.4rem; 
+    }
 
-            .section-title h2 { 
-                font-size: 1.4rem; 
-            }
+    .wally-feature {
+        padding: 20px 15px;
+        border-left-width: 4px;
+    }
 
-            .wally-feature {
-                padding: 20px 15px;
-                border-left-width: 4px;
-            }
+    .wally-content {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-            .wally-content {
-                flex-direction: column;
-                gap: 20px;
-            }
+    .wally-img-container {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+    }
 
-            .wally-img-container {
-                flex: none;
-                width: 100%;
-                max-width: 100%;
-            }
+    .wally-img {
+        height: 200px;
+    }
 
-            .wally-img {
-                height: 200px;
-            }
+    .wally-feature h3 {
+        font-size: 1.3rem;
+    }
 
-            .wally-feature h3 {
-                font-size: 1.3rem;
-            }
+    .wally-feature p {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
 
-            .wally-feature p {
-                font-size: 0.88rem;
-                line-height: 1.6;
-            }
+    .recreation-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
-            .recreation-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .area-card {
-                padding: 22px 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 12px 10px;
-            }
-
-            nav ul {
-                gap: 6px 10px;
-            }
-
-            nav ul li a {
-                font-size: 0.68rem;
-                letter-spacing: 0.8px;
-            }
-
-            h1 {
-                font-size: 1.7rem;
-            }
-
-            .wally-specs {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .wally-img {
-                height: 170px;
-            }
-
-            .area-card h3 {
-                font-size: 1.15rem;
-            }
-
-            .area-card p {
-                font-size: 0.85rem;
-            }
-        }
+    .area-card {
+        padding: 22px 18px;
+    }
+}
+        
     </style>
 </head>
 <body>
