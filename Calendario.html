@@ -375,7 +375,7 @@
             font-size: 14px; 
         }
 
-        /* --- REGLAS RESPONSIVAS PARA CELULARES Y TABLETS --- */
+        /* --- REGLAS RESPONSIVAS CORREGIDAS PARA CELULARES Y TABLETS --- */
         @media (max-width: 900px) {
             header {
                 position: relative;
@@ -398,10 +398,14 @@
             .hero {
                 height: auto;
                 min-height: 40vh;
-                padding: 40px 20px 30px 20px;
+                padding: 0; /* Soluciona el problema del padding que recortaba el header */
+                justify-content: flex-start; /* Evita que el header se empuje al centro vertical */
             }
 
-            .info-box-hero { margin-top: 20px; }
+            .info-box-hero { 
+                margin-top: 0; 
+                padding: 25px 15px; /* Reemplaza el margen y da espacio correcto */
+            }
             .info-box-hero h1 { font-size: 2.2rem; line-height: 1.2; }
             .info-box-hero p { font-size: 0.75rem; letter-spacing: 2px; }
 
@@ -606,7 +610,6 @@
         let fechaActual = new Date();
         let diaSeleccionado = null;
 
-        // Aforo máximo ajustado a 40 personas
         function calcularAforoDia(dia, diaSemana) {
             const esFinDeSemana = (diaSemana === 0 || diaSemana === 6);
             if (esFinDeSemana) {
@@ -619,13 +622,11 @@
         function actualizarDetallesDia(dia, mes, anio, diaSemana, esUltimoDia) {
             fechaMencionada.innerHTML = `Horarios y reservas para el <strong>${dia} de ${meses[mes]} de ${anio}</strong>:`;
 
-            // 1. Actualizar Aforo (Base: 40 Personas)
             const ocupantes = calcularAforoDia(dia, diaSemana);
             const porcentaje = Math.round((ocupantes / 40) * 100);
             aforoTexto.textContent = `${ocupantes} / 40 Personas`;
             aforoBarra.style.width = `${porcentaje}%`;
 
-            // 2. Horarios
             if (esUltimoDia) {
                 listaHorarios.innerHTML = `
                     <li class="schedule-item">
