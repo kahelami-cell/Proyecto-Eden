@@ -308,45 +308,37 @@
             fill: currentColor;
         }
 
-        /* --- MEDIA QUERIES OPTIMIZADAS PARA CELULARES --- */
+        /* --- MEDIA QUERIES EXCLUSIVAS PARA CELULARES --- */
         @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                min-height: auto;
+                padding: 30px 15px 40px 15px;
+                justify-content: flex-start;
+            }
+
             header {
                 position: relative;
                 flex-direction: column;
-                padding: 15px 20px;
-                background: rgba(15, 48, 75, 0.95);
+                padding: 0 0 15px 0;
+                background: transparent;
                 gap: 12px;
             }
 
             .logo img { 
-                height: 60px; 
+                height: 55px; 
             }
 
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 8px 12px;
+                gap: 8px 10px;
+                width: 100%;
             }
 
             nav ul li a {
-                font-size: 0.75rem;
-                padding: 6px 10px;
-            }
-
-            .hero {
-                height: auto;
-                min-height: 45vh;
-                padding: 40px 20px;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-                line-height: 1.2;
-            }
-
-            .hero .subtitulo {
-                font-size: 0.75rem;
-                letter-spacing: 2px;
+                font-size: 0.7rem;
+                padding: 5px 8px;
             }
 
             .container {
@@ -367,7 +359,7 @@
             }
 
             .video-container {
-                max-width: 100%; /* Se adapta por completo a la pantalla del celular */
+                max-width: 100%;
             }
 
             .services-container {
@@ -414,7 +406,7 @@
                 <li><a href="Calendario.html">CALENDARIOS</a></li>
             </ul></nav>
         </header>
-        <p class="subtitulo">NUESTRA HISTORIA</p>
+        <p class="subtitulo" style="margin-top: 15px;">NUESTRA HISTORIA</p>
         <h1>SOBRE NOSOTROS</h1>
     </div>
 
@@ -444,8 +436,9 @@
         <!-- RECUADRO DE VIDEO VERTICAL CON BORDES ESTILIZADOS -->
         <div class="video-section-wrapper">
             <div class="video-container">
-                <video controls poster="hotel.jpg">
-                    <source src="HotelEden.mp4" type="video/mp4">
+                <video controls poster="recepcion.jpg">
+                    <source src="video-hotel.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
                 </video>
             </div>
         </div>
