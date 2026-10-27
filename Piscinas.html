@@ -3,478 +3,570 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áreas Recreativas - Hotel Eden</title>
+    <title>PISCINAS - Hotel Eden</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Montserrat', sans-serif; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
         }
-        
-        body { 
-            background-color: #ffffff; 
+
+        body {
+            background-color: #ffffff;
             color: #333;
             overflow-x: hidden;
         }
 
-        /* --- HERO --- */
-        .hero { 
-            width: 100%; 
-            min-height: 55vh; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%), url('piscina2.jpeg') center/cover;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            color: white;
+        /* --- HERO CON CARRUSEL DE FONDO --- */
+        .seccion-hero {
             position: relative;
-            padding: 20px;
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        header { 
-            position: absolute; 
-            top: 0; 
+        .hero-slider {
+            position: absolute;
+            top: 0;
             left: 0;
-            width: 100%; 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 20px 50px; 
-            align-items: center; 
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slider img.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 2;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
             z-index: 10;
         }
 
-        .logo img { 
-            height: 80px; 
-            width: auto; 
-            object-fit: contain; 
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            height: 80px;
         }
 
-        nav ul { 
-            display: flex; 
-            list-style: none; 
-            gap: 25px; 
+        .logo img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
         }
 
-        nav ul li a { 
-            color: white; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            letter-spacing: 1.5px; 
-            text-transform: uppercase; 
-            transition: color 0.3s ease;
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
         }
 
-        nav ul li a:hover { 
-            color: #00A8E8; 
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        .hero-title-box {
+        /* --- BORDES DINÁMICOS Y AGRADABLES EN OPCIONES DE NAVEGACIÓN --- */
+        nav ul li a:hover {
+            color: #00A8E8;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 168, 232, 0.6);
+            box-shadow: 0 0 12px rgba(0, 168, 232, 0.4);
+        }
+
+        .contenido-hero {
+            position: relative;
+            z-index: 5;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            color: white;
             margin-top: 60px;
         }
 
-        .subtitulo { 
-            letter-spacing: 4px; 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            color: #EEF5F9; 
-            margin-bottom: 10px;
-        }
-
-        h1 { 
-            font-family: 'Cinzel', serif; 
-            font-size: 3.8rem; 
-            letter-spacing: 2px; 
-            color: #ffffff; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-        }
-
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .container { 
-            max-width: 1100px; 
-            margin: auto; 
-            padding: 60px 20px; 
-        }
-
-        .section-title { 
-            text-align: center; 
-            margin-bottom: 40px; 
-        }
-
-        .section-title h2 { 
-            font-family: 'Cinzel', serif; 
-            font-size: 2.2rem; 
-            color: #0F304B; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-        }
-
-        .divider { 
-            width: 80px; 
-            height: 4px; 
-            background: linear-gradient(90deg, #0F304B, #00A8E8); 
-            margin: 15px auto; 
-            border-radius: 2px; 
-        }
-
-        /* --- SECCIÓN DESTACADA: CANCHA DE WALLY --- */
-        .wally-feature {
-            background: #EEF5F9;
-            border-radius: 12px;
-            padding: 40px;
-            border-left: 6px solid #00A8E8;
-            box-shadow: 0 10px 25px rgba(15, 48, 75, 0.06);
-            margin-bottom: 60px;
-        }
-
-        .wally-content {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .wally-text {
-            flex: 1;
-        }
-
-        .wally-feature h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: #0F304B;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .wally-feature p {
-            color: #2B7A9F;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        /* IMAGEN DE TAMAÑO MODERADO */
-        .wally-img-container {
-            flex: 0 0 380px;
-            max-width: 380px;
-        }
-
-        .wally-img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid #00A8E8;
-            box-shadow: 0 6px 15px rgba(15, 48, 75, 0.12);
-            display: block;
-        }
-
-        .wally-specs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .spec-card {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #d0e3f0;
-        }
-
-        .spec-card h4 {
-            color: #0F304B;
-            font-size: 1rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .spec-card p {
+        .contenido-hero .subtitulo {
             font-size: 0.85rem;
-            color: #555555;
-            margin-bottom: 0;
-            line-height: 1.5;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #EEF5F9;
         }
 
-        /* --- GRID DE OTRAS ÁREAS RECREATIVAS --- */
-        .recreation-grid {
+        .contenido-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+
+        /* --- CONTENEDOR PANTALLA COMPLETA --- */
+        .container-full {
+            width: 100%;
+            padding: 60px 4%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #0F304B;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0F304B, #00A8E8);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1rem;
+            color: #2B7A9F;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        /* --- GRID DE CUADROS CON BORDES DINÁMICOS --- */
+        .info-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
             margin-bottom: 50px;
         }
 
-        .area-card {
+        .info-card {
+            background: #EEF5F9;
+            padding: 35px 30px;
+            border-left: 5px solid #00A8E8;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 10px 25px rgba(15, 48, 75, 0.06);
+            border: 1px solid rgba(0, 168, 232, 0.15); /* Borde sutil inicial */
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto dinámico de bordes e iluminación al pasar el cursor */
+        .info-card:hover {
+            transform: translateY(-8px);
             background: #ffffff;
-            border: 1px solid #EEF5F9;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-color: #00A8E8;
+            box-shadow: 0 15px 35px rgba(0, 168, 232, 0.2), 0 0 15px rgba(0, 168, 232, 0.15);
         }
 
-        .area-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 168, 232, 0.15);
-        }
-
-        .area-card h3 {
+        .info-card h3 {
             font-family: 'Cinzel', serif;
             color: #0F304B;
-            font-size: 1.3rem;
             margin-bottom: 12px;
             text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
         }
 
-        .area-card p {
-            font-size: 0.9rem;
-            color: #555555;
-            line-height: 1.7;
+        .info-card p {
+            font-size: 0.92rem;
+            color: #2B7A9F;
+            line-height: 1.6;
         }
 
-        .area-card .badge {
-            display: inline-block;
+        /* --- RECUADRO CON CARRUSEL DE TARJETA --- */
+        .card-carrusel {
+            padding: 0;
+            overflow: hidden;
+            border-left: none;
+            border-top: 5px solid #00A8E8;
+            border-radius: 12px;
+            position: relative;
+            min-height: 260px;
+            background-color: #0F304B;
+        }
+
+        .carrusel-slides {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .carrusel-slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .carrusel-slides img.active {
+            opacity: 1;
+        }
+
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 48, 75, 0.6);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 3;
+        }
+
+        .carrusel-btn:hover {
+            background: #00A8E8;
+        }
+
+        .carrusel-btn.prev { left: 10px; }
+        .carrusel-btn.next { right: 10px; }
+
+        .carrusel-dots {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 3;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: #00A8E8;
+            width: 18px;
+            border-radius: 4px;
+        }
+
+        .overlay-titulo {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to top, rgba(15, 48, 75, 0.9), transparent);
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            text-align: center;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        /* --- SERVICIOS --- */
+        .services-container {
+            width: 100%;
             background-color: #EEF5F9;
-            color: #00A8E8;
-            font-size: 0.75rem;
+            padding: 50px 4%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(15, 48, 75, 0.04);
+            border-top: 3px solid #00A8E8;
+            border: 1px solid rgba(0, 168, 232, 0.2);
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .services-list li {
+            font-size: 0.95rem;
+            color: #0F304B;
             font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 168, 232, 0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .services-list li:hover {
+            border-color: #00A8E8;
+            box-shadow: 0 4px 12px rgba(0, 168, 232, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .services-list li::before {
+            content: "✓";
+            color: #00A8E8;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-right: 12px;
         }
 
         footer { 
             padding: 30px; 
-            background: #0F304B; 
+            background: #2c3e50; 
             color: white; 
             text-align: center; 
             font-size: 14px; 
         }
-/* --- REGLAS RESPONSIVAS CORREGIDAS PARA CELULARES Y TABLETS --- */
-@media (max-width: 900px) {
-    .hero {
-        min-height: 45vh;
-        padding: 0; 
-        justify-content: flex-start; 
-    }
 
-    header {
-        position: relative;
-        width: 100%;
-        flex-direction: column;
-        padding: 15px 15px;
-        background: rgba(15, 48, 75, 0.98);
-        gap: 12px;
-    }
+        /* --- ADAPTACIÓN RESPONSIVA PARA CELULARES --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+                position: relative;
+                background: rgba(15, 48, 75, 0.95);
+            }
 
-    .logo img { 
-        height: 55px; 
-    }
+            .logo {
+                height: 60px;
+                margin-bottom: 15px;
+            }
 
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px 12px;
-        width: 100%;
-    }
+            .logo img {
+                height: 60px;
+            }
 
-    nav ul li a { 
-        font-size: 0.72rem; 
-        padding: 4px 6px;
-        display: inline-block;
-    }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 12px;
+            }
 
-    .hero-title-box { 
-        margin-top: 0;
-        padding: 30px 15px;
-        flex-grow: 1; 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+            nav ul li a {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+            }
 
-    h1 { 
-        font-size: 2rem; 
-        line-height: 1.25; 
-    }
+            .seccion-hero {
+                height: auto;
+                min-height: 50vh;
+                padding-bottom: 40px;
+            }
 
-    .subtitulo { 
-        font-size: 0.72rem; 
-        letter-spacing: 2px; 
-    }
+            .contenido-hero {
+                margin-top: 30px;
+                padding: 0 15px;
+            }
 
-    .container {
-        padding: 35px 15px;
-    }
+            .contenido-hero h1 {
+                font-size: 2.5rem;
+            }
 
-    .section-title h2 { 
-        font-size: 1.4rem; 
-    }
+            .contenido-hero .subtitulo {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
 
-    .wally-feature {
-        padding: 20px 15px;
-        border-left-width: 4px;
-    }
+            .container-full {
+                padding: 40px 20px;
+            }
 
-    .wally-content {
-        flex-direction: column;
-        gap: 20px;
-    }
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
 
-    .wally-img-container {
-        flex: none;
-        width: 100%;
-        max-width: 100%;
-    }
+            .intro-text {
+                font-size: 0.9rem;
+                margin-bottom: 30px;
+            }
 
-    .wally-img {
-        height: 200px;
-    }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
 
-    .wally-feature h3 {
-        font-size: 1.3rem;
-    }
+            .info-card {
+                padding: 25px 20px;
+            }
 
-    .wally-feature p {
-        font-size: 0.88rem;
-        line-height: 1.6;
-    }
+            .card-carrusel {
+                min-height: 220px;
+            }
 
-    .recreation-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .area-card {
-        padding: 22px 18px;
-    }
-}
-        
+            .services-list {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- HERO -->
-    <div class="hero">
+    <div class="seccion-hero">
+        <div class="hero-slider">
+            <img src="piscina1.jpeg" class="active" alt="Fondo Piscina 1">
+            <img src="piscina.jpeg" alt="Fondo Piscina 2">
+        </div>
+        <div class="hero-overlay"></div>
+
         <header>
-            <div class="logo"><img src="logo.png" alt="Logo Hotel Eden"></div>
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
             <nav>
                 <ul>
                     <li><a href="index.html">INICIO</a></li>
-                    <li><a href="Piscinas.html">PISCINAS</a></li>
+                    <li><a href="AreasRecreativas.html">AREAS RECREATIVAS</a></li>
                     <li><a href="Calendario.html">CALENDARIOS</a></li>
                     <li><a href="SobreNosotros.html">SOBRE NOSOTROS</a></li>
                 </ul>
             </nav>
         </header>
-        <div class="hero-title-box">
-            <p class="subtitulo">BIENESTAR • EXCELENCIA • DEPORTE</p>
-            <h1>ÁREAS RECREATIVAS</h1>
+
+        <div class="contenido-hero">
+            <p class="subtitulo">CALIDAD - CONFORT - COMODIDAD</p>
+            <h1>PISCINA</h1>
         </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="container">
+    <main class="container-full">
         
         <div class="section-title">
-            <p style="letter-spacing: 3px; color: #2B7A9F; font-weight: 600; font-size: 0.8rem; margin-bottom: 8px;">ESPACIOS DISEÑADOS PARA TU ENTRETENIMIENTO</p>
-            <h2>Deporte y Esparcimiento</h2>
+            <p style="letter-spacing: 4px; color: #2B7A9F; font-weight: 600; font-size: 0.85rem; margin-bottom: 10px;">EXPERIENCIA Y CONEXIÓN</p>
+            <h2>NUESTROS AMBIENTES</h2>
             <div class="divider"></div>
         </div>
 
-        <!-- SECCIÓN DESTACADA: CANCHA DE WALLY -->
-        <section class="wally-feature">
-            <span class="badge" style="background:#00A8E8; color:#fff; font-size:0.75rem; padding:4px 12px; border-radius:12px; font-weight:600; text-transform:uppercase;">Instalación Estrella</span>
+        <p class="intro-text">
+            HOTEL EDEN RESORT ofrece instalaciones acuáticas diseñadas con altos estándares de calidad, seguridad y mantenimiento para brindar momentos inolvidables de descanso y recreación a nuestros huéspedes y visitantes.
+        </p>
+
+        <div class="info-grid">
             
-            <div class="wally-content" style="margin-top: 15px;">
-                <div class="wally-text">
-                    <h3>Cancha Oficial de Wally</h3>
-                    <p>
-                        El <strong>Wallyball</strong> es una de las disciplinas deportivas y recreativas más apasionantes y populares en Bolivia. En Hotel Edén Resort disponemos de una cancha reglamentaria totalmente cerrada, construida bajo estándares técnicos estrictos para garantizar dinamismo, velocidad y seguridad en cada jugada.
-                    </p>
-                    <p>
-                        Equipada con muros de alto rebote, iluminación LED de alta visibilidad y piso sintético engomado, es el punto de encuentro perfecto para torneos ejecutivos o partidos entre amigos.
-                    </p>
-                </div>
-
-                <!-- CONTENEDOR DE LA IMAGEN (TAMAÑO MODERADO) -->
-                <div class="wally-img-container">
-                    <img src="Cancha.png" alt="Cancha de Wally Hotel Eden" class="wally-img">
-                </div>
+            <div class="info-card">
+                <h3>Piscina Climatizada</h3>
+                <p>Agua a temperatura regulada ideal para el clima de la región, permitiendo disfrutar de un baño placentero en cualquier época del año.</p>
             </div>
 
-            <div class="wally-specs">
-                <div class="spec-card">
-                    <h4>Piso Especializado</h4>
-                    <p>Superficie sintética de impacto que protege articulaciones durante el juego.</p>
-                </div>
-                <div class="spec-card">
-                    <h4>Ambiente Climatizado</h4>
-                    <p>Temperatura controlada para practicar deporte sin sufrir las inclemencias del clima.</p>
-                </div>
-                <div class="spec-card">
-                    <h4>Equipamiento Incluido</h4>
-                    <p>Acceso a balones oficiales de wallyball y red reglamentaria ajustada.</p>
-                </div>
-                <div class="spec-card">
-                    <h4>Reservas por Hora</h4>
-                    <p>Disponible para huéspedes del hotel y usuarios particulares mediante reserva previa.</p>
-                </div>
+            <div class="info-card">
+                <h3>Tina de Hidromasaje</h3>
+                <p>Una tina integrada con chorros de presión diseñados para relajar los músculos y ofrecer una experiencia revitalizante.</p>
             </div>
-        </section>
 
-        <!-- OTRAS ÁREAS RECREATIVAS -->
-        <div class="section-title">
-            <h2>Otros Espacios de Esparcimiento</h2>
-            <div class="divider"></div>
+            <div class="info-card card-carrusel">
+                <div class="carrusel-slides">
+                    <img src="piscina3.jpeg" class="active" alt="Piscina">
+                    <img src="piscina7.jpeg" alt="Hidromasaje">
+                    <img src="piscina4.jpeg" alt="Sauna de Madera">
+                    <img src="piscina5.jpeg" alt="Sauna">
+                    <img src="piscina9.jpeg" alt="Bar">
+                    <img src="piscina8.jpeg" alt="Bar">
+                    <img src="piscina6.jpeg" alt="Descanso">
+                </div>
+
+                <button class="carrusel-btn prev" onclick="cambiarSlide(-1)">&#10094;</button>
+                <button class="carrusel-btn next" onclick="cambiarSlide(1)">&#10095;</button>
+
+                <div class="carrusel-dots" id="dots-container"></div>
+
+                <div class="overlay-titulo">GALERÍA DE INSTALACIONES</div>
+            </div>
+
+            <div class="info-card">
+                <h3>Sauna Seco y de Vapor</h3>
+                <p>Dos saunas abiertos y en funcionamiento para huéspedes o posibles clientes, uno seco hecho con madera de Pino Escandinavo, y el otro de vapor hecho con la cerámica más fina.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Bar & Descanso</h3>
+                <p>Servicio de bebidas y snacks al borde de la piscina y en el área superior, con espacios cómodos de descanso y sillas reposeras libres al uso.</p>
+            </div>
+
         </div>
 
-        <div class="recreation-grid">
-            
-            <!-- GIMNASIO -->
-            <div class="area-card">
-                <span class="badge">Salud y Fitness</span>
-                <h3>Gimnasio Equipado</h3>
-                <p>
-                    Contamos con un gimnasio completo equipado con maquinaria cardiovascular (cintas de correr, elípticas, bicicletas estáticas) y estaciones de musculación y pesas libres. Espacio acondicionado con música ambiental y ventilación óptima para mantener tu rutina de entrenamiento.
-                </p>
+        <div class="services-container">
+            <div class="section-title" style="margin-bottom: 20px;">
+                <h2>Servicios Incluidos en el Área</h2>
+                <div class="divider"></div>
             </div>
 
-            <!-- SOLARIUM -->
-            <div class="area-card">
-                <span class="badge">Relax & Sol</span>
-                <h3>Solarium y Zona de Descanso</h3>
-                <p>
-                    Ubicado junto a la piscina principal, el Solarium ofrece un espacio con reposeras ergonómicas y una estructura acristalada que aprovecha al máximo la radiación solar de la altitud orureña, proporcionando un microclima cálido ideal para relajarse después de nadar.
-                </p>
-            </div>
-
-            <!-- SALÓN DE JUEGOS -->
-            <div class="area-card">
-                <span class="badge">Entretenimiento Familiar</span>
-                <h3>Salón de Juegos y Billar</h3>
-                <p>
-                    Un área pensada para el ocio en grupo que incluye mesas de billar profesional, tenis de mesa (ping pong) y juegos de mesa. Un ambiente distendido para disfrutar de tardes agradables en compañía de amigos o familiares.
-                </p>
-            </div>
-
-            <!-- ÁREA SPA Y SAUNAS -->
-            <div class="area-card">
-                <span class="badge">Salud e Higiene</span>
-                <h3>Sauna Seco y Vapor</h3>
-                <p>
-                    Complemento perfecto para revitalizar el cuerpo tras una jornada deportiva en la cancha de wally o el gimnasio. Cámaras de vapor con esencias naturales y sauna finlandés seco para desintoxicar y relajar la musculatura.
-                </p>
-            </div>
-
+            <ul class="services-list">
+                <li>Vestidores y Duchas</li>
+                <li>Casilleros Seguros</li>
+                <li>Control de Temperatura</li>
+                <li>Tratamiento de Agua Constante</li>
+                <li>Salvavidas en Turno</li>
+                <li>Sillas Reposeras</li>
+            </ul>
         </div>
 
     </main>
@@ -482,6 +574,67 @@
     <footer>
         <p>&copy; 2026 Hotel Eden Resort. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- SCRIPTS DE LOS CARRUSELES -->
+    <script>
+        const heroSlides = document.querySelectorAll('.hero-slider img');
+        let heroIndex = 0;
+
+        function cambiarFondoHero() {
+            heroSlides[heroIndex].classList.remove('active');
+            heroIndex = (heroIndex + 1) % heroSlides.length;
+            heroSlides[heroIndex].classList.add('active');
+        }
+
+        setInterval(cambiarFondoHero, 4000);
+
+        const slides = document.querySelectorAll('.carrusel-slides img');
+        const dotsContainer = document.getElementById('dots-container');
+        let slideActual = 0;
+        let intervaloAuto;
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => irASlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function mostrarSlide(index) {
+            slides.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
+            });
+            slideActual = index;
+        }
+
+        function cambiarSlide(direccion) {
+            let nuevoIndex = slideActual + direccion;
+            if (nuevoIndex >= slides.length) nuevoIndex = 0;
+            if (nuevoIndex < 0) nuevoIndex = slides.length - 1;
+            mostrarSlide(nuevoIndex);
+            reiniciarIntervalo();
+        }
+
+        function irASlide(index) {
+            mostrarSlide(index);
+            reiniciarIntervalo();
+        }
+
+        function iniciarAutoSlide() {
+            intervaloAuto = setInterval(() => cambiarSlide(1), 3500);
+        }
+
+        function reiniciarIntervalo() {
+            clearInterval(intervaloAuto);
+            iniciarAutoSlide();
+        }
+
+        iniciarAutoSlide();
+    </script>
 
 </body>
 </html>
