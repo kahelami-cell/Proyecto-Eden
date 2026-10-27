@@ -21,11 +21,10 @@
             overflow-x: hidden;
         }
 
-        /* --- HERO --- */
+        /* --- HERO CON CARRUSEL DE FONDO --- */
         .hero { 
             width: 100%; 
             min-height: 55vh; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%), url('piscina2.jpeg') center/cover;
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -33,6 +32,42 @@
             color: white;
             position: relative;
             padding: 20px;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slider img.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 2;
         }
 
         header { 
@@ -59,6 +94,7 @@
             gap: 25px; 
         }
 
+        /* --- BORDES DINÁMICOS Y AGRADABLES EN OPCIONES DE NAVEGACIÓN --- */
         nav ul li a { 
             color: white; 
             text-decoration: none; 
@@ -66,14 +102,22 @@
             font-size: 0.85rem; 
             letter-spacing: 1.5px; 
             text-transform: uppercase; 
-            transition: color 0.3s ease;
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
         nav ul li a:hover { 
             color: #00A8E8; 
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 168, 232, 0.6);
+            box-shadow: 0 0 12px rgba(0, 168, 232, 0.4);
         }
 
         .hero-title-box {
+            position: relative;
+            z-index: 5;
             text-align: center;
             margin-top: 60px;
         }
@@ -91,7 +135,7 @@
             font-size: 3.8rem; 
             letter-spacing: 2px; 
             color: #ffffff; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -129,7 +173,14 @@
             padding: 40px;
             border-left: 6px solid #00A8E8;
             box-shadow: 0 10px 25px rgba(15, 48, 75, 0.06);
+            border: 1px solid rgba(0, 168, 232, 0.15);
             margin-bottom: 60px;
+            transition: all 0.3s ease;
+        }
+
+        .wally-feature:hover {
+            box-shadow: 0 15px 35px rgba(0, 168, 232, 0.18);
+            border-color: rgba(0, 168, 232, 0.4);
         }
 
         .wally-content {
@@ -158,7 +209,6 @@
             margin-bottom: 15px;
         }
 
-        /* IMAGEN DE TAMAÑO MODERADO */
         .wally-img-container {
             flex: 0 0 380px;
             max-width: 380px;
@@ -186,6 +236,12 @@
             padding: 20px;
             border-radius: 8px;
             border: 1px solid #d0e3f0;
+            transition: transform 0.3s ease;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-3px);
+            border-color: #00A8E8;
         }
 
         .spec-card h4 {
@@ -205,23 +261,24 @@
         /* --- GRID DE OTRAS ÁREAS RECREATIVAS --- */
         .recreation-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-bottom: 50px;
         }
 
         .area-card {
             background: #ffffff;
-            border: 1px solid #EEF5F9;
+            border: 1px solid rgba(0, 168, 232, 0.15);
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .area-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 168, 232, 0.15);
+            transform: translateY(-8px);
+            border-color: #00A8E8;
+            box-shadow: 0 15px 35px rgba(0, 168, 232, 0.2), 0 0 15px rgba(0, 168, 232, 0.15);
         }
 
         .area-card h3 {
@@ -248,6 +305,7 @@
             border-radius: 15px;
             margin-bottom: 15px;
             text-transform: uppercase;
+            border: 1px solid rgba(0, 168, 232, 0.3);
         }
 
         footer { 
@@ -257,113 +315,148 @@
             text-align: center; 
             font-size: 14px; 
         }
-/* --- REGLAS RESPONSIVAS CORREGIDAS PARA CELULARES Y TABLETS --- */
-@media (max-width: 900px) {
-    .hero {
-        min-height: 45vh;
-        padding: 0; 
-        justify-content: flex-start; 
-    }
 
-    header {
-        position: relative;
-        width: 100%;
-        flex-direction: column;
-        padding: 15px 15px;
-        background: rgba(15, 48, 75, 0.98);
-        gap: 12px;
-    }
+        /* --- REGLAS RESPONSIVAS COMPLETAS PARA CELULARES Y TABLETS --- */
+        @media (max-width: 900px) {
+            header {
+                position: relative;
+                flex-direction: column;
+                padding: 15px 15px;
+                background: rgba(15, 48, 75, 0.98);
+                gap: 12px;
+            }
 
-    .logo img { 
-        height: 55px; 
-    }
+            .logo img { 
+                height: 55px; 
+            }
 
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px 12px;
-        width: 100%;
-    }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 12px;
+                width: 100%;
+            }
 
-    nav ul li a { 
-        font-size: 0.72rem; 
-        padding: 4px 6px;
-        display: inline-block;
-    }
+            nav ul li a { 
+                font-size: 0.72rem; 
+                padding: 6px 10px;
+                display: inline-block;
+            }
 
-    .hero-title-box { 
-        margin-top: 0;
-        padding: 30px 15px;
-        flex-grow: 1; 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+            .hero {
+                min-height: 38vh;
+                padding: 30px 15px;
+            }
 
-    h1 { 
-        font-size: 2rem; 
-        line-height: 1.25; 
-    }
+            .hero-title-box { 
+                margin-top: 15px; 
+            }
 
-    .subtitulo { 
-        font-size: 0.72rem; 
-        letter-spacing: 2px; 
-    }
+            h1 { 
+                font-size: 2rem; 
+                line-height: 1.25; 
+            }
 
-    .container {
-        padding: 35px 15px;
-    }
+            .subtitulo { 
+                font-size: 0.72rem; 
+                letter-spacing: 2px; 
+            }
 
-    .section-title h2 { 
-        font-size: 1.4rem; 
-    }
+            .container {
+                padding: 35px 15px;
+            }
 
-    .wally-feature {
-        padding: 20px 15px;
-        border-left-width: 4px;
-    }
+            .section-title h2 { 
+                font-size: 1.4rem; 
+            }
 
-    .wally-content {
-        flex-direction: column;
-        gap: 20px;
-    }
+            .wally-feature {
+                padding: 20px 15px;
+                border-left-width: 4px;
+            }
 
-    .wally-img-container {
-        flex: none;
-        width: 100%;
-        max-width: 100%;
-    }
+            .wally-content {
+                flex-direction: column;
+                gap: 20px;
+            }
 
-    .wally-img {
-        height: 200px;
-    }
+            .wally-img-container {
+                flex: none;
+                width: 100%;
+                max-width: 100%;
+            }
 
-    .wally-feature h3 {
-        font-size: 1.3rem;
-    }
+            .wally-img {
+                height: 200px;
+            }
 
-    .wally-feature p {
-        font-size: 0.88rem;
-        line-height: 1.6;
-    }
+            .wally-feature h3 {
+                font-size: 1.3rem;
+            }
 
-    .recreation-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
+            .wally-feature p {
+                font-size: 0.88rem;
+                line-height: 1.6;
+            }
 
-    .area-card {
-        padding: 22px 18px;
-    }
-}
-        
+            .recreation-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .area-card {
+                padding: 22px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 12px 10px;
+            }
+
+            nav ul {
+                gap: 6px 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.68rem;
+                letter-spacing: 0.8px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .wally-specs {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .wally-img {
+                height: 170px;
+            }
+
+            .area-card h3 {
+                font-size: 1.15rem;
+            }
+
+            .area-card p {
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- HERO -->
+    <!-- HERO CON CARRUSEL DE FONDO -->
     <div class="hero">
+        <div class="hero-slider">
+            <img src="piscina2.jpeg" class="active" alt="Fondo Áreas Recreativas 1">
+            <img src="piscina4.jpeg" alt="Fondo Áreas Recreativas 2">
+            <img src="piscina7.jpeg" alt="Fondo Áreas Recreativas 3">
+        </div>
+        <div class="hero-overlay"></div>
+
         <header>
             <div class="logo"><img src="logo.png" alt="Logo Hotel Eden"></div>
             <nav>
@@ -405,7 +498,6 @@
                     </p>
                 </div>
 
-                <!-- CONTENEDOR DE LA IMAGEN (TAMAÑO MODERADO) -->
                 <div class="wally-img-container">
                     <img src="Cancha.png" alt="Cancha de Wally Hotel Eden" class="wally-img">
                 </div>
@@ -457,15 +549,6 @@
                 </p>
             </div>
 
-            <!-- SALÓN DE JUEGOS -->
-            <div class="area-card">
-                <span class="badge">Entretenimiento Familiar</span>
-                <h3>Salón de Juegos y Billar</h3>
-                <p>
-                    Un área pensada para el ocio en grupo que incluye mesas de billar profesional, tenis de mesa (ping pong) y juegos de mesa. Un ambiente distendido para disfrutar de tardes agradables en compañía de amigos o familiares.
-                </p>
-            </div>
-
             <!-- ÁREA SPA Y SAUNAS -->
             <div class="area-card">
                 <span class="badge">Salud e Higiene</span>
@@ -482,6 +565,20 @@
     <footer>
         <p>&copy; 2026 Hotel Eden Resort. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- SCRIPT DEL CARRUSEL DE FONDO -->
+    <script>
+        const heroSlides = document.querySelectorAll('.hero-slider img');
+        let heroIndex = 0;
+
+        function cambiarFondoHero() {
+            heroSlides[heroIndex].classList.remove('active');
+            heroIndex = (heroIndex + 1) % heroSlides.length;
+            heroSlides[heroIndex].classList.add('active');
+        }
+
+        setInterval(cambiarFondoHero, 4000);
+    </script>
 
 </body>
 </html>
