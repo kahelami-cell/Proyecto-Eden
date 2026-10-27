@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Reseteo básico de márgenes */
         * {
             margin: 0;
             padding: 0;
@@ -24,17 +23,17 @@
             overflow-x: hidden;
         }
 
-        /* Contenedor principal: utiliza Flexbox para dividir la pantalla */
+        /* --- CONTENEDOR SPLIT CON TRANSICIÓN ESTILIZADA --- */
         .split-layout {
             display: flex;
             height: 100vh;
             width: 100vw;
             position: relative;
             z-index: 5;
-            box-shadow: 0 8px 20px rgba(15, 48, 75, 0.25);
+            box-shadow: 0 10px 30px rgba(15, 48, 75, 0.3);
         }
 
-        /* --- MITAD IZQUIERDA: Área de texto --- */
+        /* --- MITAD IZQUIERDA: GIF de la Bandera --- */
         .text-side {
             width: 50%;
             display: flex;
@@ -42,8 +41,35 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-color: #D3E2EF; 
+            background-color: #b30000;
+            background-image: url('red-flag-racing-flag.gif'); 
+            background-size: 120% 120%; 
+            background-position: center;
+            background-repeat: no-repeat;
             position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .text-side-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 48, 75, 0.25);
+            z-index: 1;
+        }
+
+        .text-side-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
         }
 
         .subtitle {
@@ -51,29 +77,31 @@
             font-weight: 600;
             letter-spacing: 4px;
             font-size: 0.85rem;
-            color: #2B7A9F; 
+            color: #EEF5F9; 
             margin-bottom: 15px;
             text-transform: uppercase;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
         }
 
         .title {
             font-family: 'Cinzel', serif;
             font-size: 4.5rem;
-            color: #0F304B; 
+            color: #FFFFFF; 
             line-height: 1.1;
             margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
         }
 
         .divider {
-    width: 80px;
-    height: 4px;
-    background-color: #00A8E8;
-    border: none;
-    border-radius: 2px;
-    margin: 20px auto;
-}
+            width: 100px;
+            height: 4px;
+            background-color: #00A8E8; 
+            border: none;
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
 
-        /* --- MITAD DERECHA: Área de la imagen --- */
+        /* --- MITAD DERECHA: Área de la imagen del Hotel --- */
         .image-side {
             width: 50%;
             background-image: url('hotel.png');
@@ -82,7 +110,90 @@
             position: relative;
         }
 
-        /* --- ELEMENTOS DE LAS ESQUINAS --- */
+        .image-side-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, transparent 20%);
+        }
+
+        /* --- EMBLEMA CENTRAL CON EL ESCUDO DE ORURO --- */
+        .center-connector {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        /* Línea vertical dorada de conexión elegante */
+        .center-line {
+            position: absolute;
+            top: -50vh;
+            bottom: -50vh;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, #D4AF37, #FFFFFF, #D4AF37, transparent);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
+            z-index: -1;
+        }
+
+        /* Medalla / Marco del Escudo */
+        .shield-badge {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffffff 60%, #f4e8c1 100%);
+            border: 3px solid #D4AF37;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .shield-badge:hover {
+            transform: scale(1.12) rotate(2deg);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.9), 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .shield-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* --- TRANSICIÓN ONDULADA INFERIOR (SEPARADOR) --- */
+        .wave-separator {
+            position: relative;
+            width: 100%;
+            margin-top: -50px;
+            z-index: 10;
+            line-height: 0;
+        }
+
+        .wave-separator svg {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 60px;
+        }
+
+        .wave-separator .shape-fill {
+            fill: #D3E2EF;
+        }
+
+        /* Logo superior izquierdo */
         .logo-container {
             position: absolute;
             top: 40px;
@@ -91,7 +202,7 @@
             height: 85px;
             border-radius: 50%;
             background-color: white;
-            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.15); 
+            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.2); 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -104,7 +215,7 @@
 
         .logo-container:hover {
             transform: scale(1.08);
-            box-shadow: 0 6px 20px rgba(0, 168, 232, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 168, 232, 0.4);
         }
 
         .logo-container img {
@@ -113,7 +224,7 @@
             object-fit: contain;
         }
 
-        /* --- CONTENEDOR DEL MENÚ --- */
+        /* Menú de Navegación */
         #nav-container {
             position: absolute;
             top: 40px;
@@ -125,7 +236,7 @@
         }
 
         .menu-btn {
-            background: rgba(15, 48, 75, 0.5);
+            background: rgba(15, 48, 75, 0.6);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 12px 28px;
@@ -136,6 +247,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(8px);
+            border-radius: 4px;
         }
 
         .menu-btn:hover {
@@ -144,7 +256,6 @@
             border-color: transparent;
         }
 
-        /* --- ESTILOS DEL MENÚ DESPLEGABLE --- */
         .dropdown-menu {
             list-style: none;
             background: white;
@@ -189,11 +300,13 @@
             color: #00A8E8;
         }
 
-        /* SECCIÓN INFERIOR DE BIENVENIDA */
+        /* --- CONTENIDO INFERIOR --- */
         .main-wrapper { 
             width: 100%;
             background-color: #D3E2EF;
-            padding: 80px 20px;
+            padding: 40px 20px 80px 20px;
+            position: relative;
+            z-index: 12;
         }
 
         .main-content { 
@@ -208,6 +321,13 @@
             margin-bottom: 20px; 
             text-transform: uppercase; 
             letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .main-content p {
+            color: #2B7A9F;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
         footer { 
@@ -218,97 +338,67 @@
             font-size: 14px; 
         }
 
-        /* ==========================================
-           ADAPTACIÓN RESPONSIVA PARA CELULARES
-           ========================================== */
         @media (max-width: 768px) {
-            
-            /* 1. Cambio de estructura dividida a vertical */
-            .split-layout {
-                flex-direction: column;
-                height: auto;
-                min-height: 100vh;
-            }
+    .split-layout {
+        flex-direction: column;
+        height: auto;
+    }
 
-            .text-side {
-                width: 100%;
-                min-height: 55vh;
-                padding: 110px 20px 40px 20px; /* Padding superior para no pisar el logo/menú */
-            }
+    .text-side, 
+    .image-side {
+        width: 100%;
+        min-height: 50vh;
+    }
 
-            .image-side {
-                width: 100%;
-                height: 280px; /* Altura fija tipo banner para la imagen */
-            }
+    .title {
+        font-size: 3rem; /* Reduce un poco el tamaño en celulares para que no desborde */
+    }
 
-            /* 2. Reubicación de Logo y Botón de Menú */
-            .logo-container {
-                top: 20px;
-                left: 20px;
-                width: 60px;
-                height: 60px;
-            }
+    .logo-container {
+        top: 20px;
+        left: 20px;
+        width: 65px;
+        height: 65px;
+    }
 
-            #nav-container {
-                top: 25px;
-                right: 20px;
-            }
-
-            .menu-btn {
-                padding: 10px 18px;
-                font-size: 0.75rem;
-                letter-spacing: 1px;
-            }
-
-            .dropdown-menu {
-                min-width: 190px;
-            }
-
-            /* 3. Escala del texto principal */
-            .title {
-                font-size: 2.8rem;
-                margin-bottom: 15px;
-            }
-
-            .subtitle {
-                font-size: 0.75rem;
-                letter-spacing: 2px;
-            }
-
-            /* 4. Sección inferior y pie de página */
-            .main-wrapper {
-                padding: 45px 20px;
-            }
-
-            .main-content h2 {
-                font-size: 1.5rem;
-            }
-
-            .main-content p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
-        }
+    #nav-container {
+        top: 20px;
+        right: 20px;
+    }
+}
     </style>
 </head>
 <body>
 
     <div class="split-layout">
         
-        <!-- Lado Izquierdo (Texto y Logo) -->
+        <!-- Lado Izquierdo (GIF de la Bandera) -->
         <section class="text-side">
-            <a href="https://www.hoteledenbolivia.com/" class="logo-container" title="Ir a la página principal">
-                <img src="logo.png" alt="Logo del Hotel Eden">
-            </a>
+            <div class="text-side-overlay"></div>
 
-            <p class="subtitle">Área de Piscina</p>
-            <h1 class="title">HOTEL<br>EDEN</h1>
-            <hr class="divider">
+            <div class="text-side-content">
+                <a href="https://www.hoteledenbolivia.com/" class="logo-container" title="Ir a la página principal">
+                    <img src="logo.png" alt="Logo del Hotel Eden">
+                </a>
 
+                <p class="subtitle">Área de Piscina</p>
+                <h1 class="title">HOTEL<br>EDEN</h1>
+                <hr class="divider">
+            </div>
         </section>
 
-        <!-- Lado Derecho (Imagen y Menú) -->
+        <!-- EMBLEMA CENTRAL CON EL ESCUDO DE ORURO -->
+        <div class="center-connector">
+            <div class="center-line"></div>
+            <div class="shield-badge" title="Escudo de Oruro">
+                <img src="Coat_of_arms_of_Oruro.png" alt="Escudo de Oruro">
+            </div>
+        </div>
+
+        <!-- Lado Derecho (Imagen del Hotel) -->
         <section class="image-side">
+            <div class="image-side-overlay"></div>
+
             <div id="nav-container">
                 <button class="menu-btn" id="menuToggleBtn">MENÚ DE NAVEGACIÓN</button>
 
@@ -316,6 +406,7 @@
                     <li><a href="Piscinas.html">Piscinas</a></li>
                     <li><a href="AreasRecreativas.html">Areas Recreativas</a></li>
                     <li><a href="Calendario.html">Calendario</a></li>
+                    <li><a href="Clubes.html">Clubes</a></li>
                     <li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
                 </ul>
             </div>
@@ -323,11 +414,18 @@
 
     </div>
 
+    <!-- SEPARADOR ONDULADO ENTRE EL HEADER Y EL CONTENIDO -->
+    <div class="wave-separator">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 C150,90 350,-40 500,50 C650,140 900,10 1200,40 L1200,120 L0,120 Z" class="shape-fill"></path>
+        </svg>
+    </div>
+
     <section class="main-wrapper">
         <main class="main-content">
             <h2>¡Bienvenido a nuestra página principal!</h2>
-            <div class="divider"></div>
-            <p>Este es un diseño web moderno, simple y fácil de navegar. En esta sección puedes colocar el contenido más importante de tu proyecto, una descripción de tu negocio o los artículos de tu blog.</p>
+            <div class="divider" style="margin: 0 auto 25px auto;"></div>
+            <p>Este es un diseño web moderno, simple y fácil de navegar. Especializado en el área de la piscina del prestigioso Hotel Eden.</p>
         </main>
     </section>
 
