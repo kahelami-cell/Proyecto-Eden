@@ -56,6 +56,7 @@
             display: flex; 
             list-style: none; 
             gap: 25px; 
+            align-items: center;
         }
 
         nav ul li a { 
@@ -65,11 +66,17 @@
             font-size: 0.85rem; 
             letter-spacing: 1.5px; 
             text-transform: uppercase; 
-            transition: color 0.3s ease;
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
         nav ul li a:hover {
             color: #00A8E8;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 168, 232, 0.6);
+            box-shadow: 0 0 12px rgba(0, 168, 232, 0.4);
         }
 
         .info-box-hero { 
@@ -231,6 +238,13 @@
             border-left: 5px solid #00A8E8;
             border-radius: 0 12px 12px 0;
             box-shadow: 0 8px 20px rgba(15, 48, 75, 0.05);
+            border: 1px solid rgba(0, 168, 232, 0.15);
+            transition: all 0.35s ease;
+        }
+
+        .info-card:hover {
+            border-color: #00A8E8;
+            box-shadow: 0 12px 30px rgba(0, 168, 232, 0.15);
         }
 
         .info-card h3 {
@@ -313,6 +327,7 @@
             padding: 40px 30px;
             border-radius: 12px;
             border-top: 3px solid #00A8E8;
+            border: 1px solid rgba(0, 168, 232, 0.2);
             margin-bottom: 50px;
             box-shadow: 0 10px 25px rgba(15, 48, 75, 0.04);
         }
@@ -375,7 +390,7 @@
             font-size: 14px; 
         }
 
-        /* --- REGLAS RESPONSIVAS CORREGIDAS PARA CELULARES Y TABLETS --- */
+        /* --- REGLAS RESPONSIVAS --- */
         @media (max-width: 900px) {
             header {
                 position: relative;
@@ -390,21 +405,24 @@
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px 15px;
+                gap: 8px 12px;
             }
 
-            nav ul li a { font-size: 0.75rem; }
+            nav ul li a { 
+                font-size: 0.75rem; 
+                padding: 6px 10px;
+            }
 
             .hero {
                 height: auto;
                 min-height: 40vh;
-                padding: 0; /* Soluciona el problema del padding que recortaba el header */
-                justify-content: flex-start; /* Evita que el header se empuje al centro vertical */
+                padding: 0;
+                justify-content: flex-start;
             }
 
             .info-box-hero { 
                 margin-top: 0; 
-                padding: 25px 15px; /* Reemplaza el margen y da espacio correcto */
+                padding: 25px 15px;
             }
             .info-box-hero h1 { font-size: 2.2rem; line-height: 1.2; }
             .info-box-hero p { font-size: 0.75rem; letter-spacing: 2px; }
@@ -471,7 +489,9 @@
                     <li><a href="index.html">INICIO</a></li>
                     <li><a href="Piscinas.html">PISCINAS</a></li>
                     <li><a href="AreasRecreativas.html">AREAS RECREATIVAS</a></li>
+                    <li><a href="Calendario.html">CALENDARIOS</a></li>
                     <li><a href="SobreNosotros.html">SOBRE NOSOTROS</a></li>
+                    <li><a href="#" onclick="solicitarAccesoAdmin(event)" style="border: 1px dashed #00A8E8; background: rgba(0, 168, 232, 0.15);">ADMIN</a></li>
                 </ul>
             </nav>
         </header>
@@ -594,8 +614,162 @@
         <p>&copy; 2026 Hotel Eden Resort. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPT DE LÓGICA DINÁMICA -->
+    <!-- SCRIPT DE LÓGICA DINÁMICA, PERSISTENCIA PERMANENTE Y PANEL ADMIN -->
     <script>
+        // Clave de almacenamiento permanente local
+        const STORAGE_KEY = "hotel_eden_reservas_data_v1";
+
+        function obtenerDatosGuardados() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : {};
+        }
+
+        function guardarDatosPermanentes(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function solicitarAccesoAdmin(e) {
+            e.preventDefault();
+            let modalPassword = document.getElementById('admin-password-overlay');
+            if (!modalPassword) {
+                modalPassword = document.createElement('div');
+                modalPassword.id = 'admin-password-overlay';
+                modalPassword.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; display:flex; justify-content:center; align-items:center; padding:20px;";
+                modalPassword.innerHTML = `
+                    <div style="background:white; padding:30px; border-radius:12px; width:100%; max-width:400px; box-shadow:0 15px 35px rgba(0,0,0,0.3); border-top:5px solid #00A8E8; text-align:center;">
+                        <h3 style="font-family:'Cinzel',serif; color:#0F304B; margin-bottom:10px; text-transform:uppercase;">Acceso Restringido</h3>
+                        <p style="font-size:0.85rem; color:#2B7A9F; margin-bottom:20px;">Ingrese la contraseña de administración para continuar:</p>
+                        <input type="password" id="input-admin-pass" placeholder="Contraseña..." style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; margin-bottom:20px; font-size:1rem; text-align:center;">
+                        <div style="display:flex; justify-content:center; gap:10px;">
+                            <button onclick="cerrarPasswordModal()" style="padding:10px 20px; background:#ccc; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Cancelar</button>
+                            <button onclick="verificarPasswordAdmin()" style="padding:10px 20px; background:#00A8E8; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Entrar</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modalPassword);
+            } else {
+                modalPassword.style.display = 'flex';
+                document.getElementById('input-admin-pass').value = '';
+            }
+        }
+
+        function cerrarPasswordModal() {
+            const modal = document.getElementById('admin-password-overlay');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function verificarPasswordAdmin() {
+            const pass = document.getElementById('input-admin-pass').value;
+            // Contraseña establecida: "eden2026"
+            if (pass === "eden2026") {
+                cerrarPasswordModal();
+                abrirPanelAdmin();
+            } else {
+                alert("Contraseña incorrecta. Acceso denegado.");
+            }
+        }
+
+        function abrirPanelAdmin() {
+            if (!diaSeleccionado) {
+                alert("Por favor, seleccione primero un día en el calendario.");
+                return;
+            }
+
+            const anio = diaSeleccionado.getFullYear();
+            const mes = diaSeleccionado.getMonth();
+            const dia = diaSeleccionado.getDate();
+            const claveFecha = `${anio}-${mes}-${dia}`;
+
+            const baseDatos = obtenerDatosGuardados();
+            const datosDiaActual = baseDatos[claveFecha] || { 
+                aforo: calcularAforoDia(dia, diaSeleccionado.getDay()), 
+                manana: 'disponible', 
+                tarde: 'disponible', 
+                noche: 'disponible' 
+            };
+
+            let overlay = document.getElementById('admin-modal-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'admin-modal-overlay';
+                overlay.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; display:flex; justify-content:center; align-items:center; padding:20px;";
+                document.body.appendChild(overlay);
+            }
+
+            overlay.innerHTML = `
+                <div style="background:white; padding:30px; border-radius:12px; width:100%; max-width:480px; box-shadow:0 15px 35px rgba(0,0,0,0.3); border-top:5px solid #00A8E8; max-height:90vh; overflow-y:auto;">
+                    <h3 style="font-family:'Cinzel',serif; color:#0F304B; margin-bottom:5px; text-transform:uppercase;">Panel Admin - ${dia} de ${meses[mes]} de ${anio}</h3>
+                    <p style="font-size:0.85rem; color:#2B7A9F; margin-bottom:20px;">Modifique el aforo y estado de horarios específicos. Los cambios se guardarán de forma permanente.</p>
+                    
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:#0F304B; margin-bottom:6px;">Cantidad de Personas (Aforo Máx 40):</label>
+                    <input type="number" id="admin-input-aforo" min="0" max="40" value="${datosDiaActual.aforo}" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; font-size:0.95rem;">
+                    
+                    <h4 style="font-family:'Cinzel',serif; font-size:0.95rem; color:#0F304B; margin-bottom:10px; text-transform:uppercase;">Estado por Bloque Horario:</h4>
+                    
+                    <div style="margin-bottom:12px; background:#EEF5F9; padding:10px; border-radius:6px;">
+                        <label style="display:block; font-size:0.85rem; font-weight:600; color:#0F304B; margin-bottom:4px;">09:00 - 13:00 (Mañana):</label>
+                        <select id="admin-bloque-manana" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                            <option value="disponible" ${datosDiaActual.manana === 'disponible' ? 'selected' : ''}>Disponible (Ingreso General)</option>
+                            <option value="reservado" ${datosDiaActual.manana === 'reservado' ? 'selected' : ''}>Reservado / Evento Privado</option>
+                            <option value="mantenimiento" ${datosDiaActual.manana === 'mantenimiento' ? 'selected' : ''}>Mantenimiento / Cerrado</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom:12px; background:#EEF5F9; padding:10px; border-radius:6px;">
+                        <label style="display:block; font-size:0.85rem; font-weight:600; color:#0F304B; margin-bottom:4px;">14:00 - 18:00 (Tarde):</label>
+                        <select id="admin-bloque-tarde" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                            <option value="disponible" ${datosDiaActual.tarde === 'disponible' ? 'selected' : ''}>Disponible (Ingreso General)</option>
+                            <option value="reservado" ${datosDiaActual.tarde === 'reservado' ? 'selected' : ''}>Reservado / Evento Privado</option>
+                            <option value="mantenimiento" ${datosDiaActual.tarde === 'mantenimiento' ? 'selected' : ''}>Mantenimiento / Cerrado</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom:20px; background:#EEF5F9; padding:10px; border-radius:6px;">
+                        <label style="display:block; font-size:0.85rem; font-weight:600; color:#0F304B; margin-bottom:4px;">18:30 - 21:00 (Noche):</label>
+                        <select id="admin-bloque-noche" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;">
+                            <option value="disponible" ${datosDiaActual.noche === 'disponible' ? 'selected' : ''}>Disponible (Ingreso General)</option>
+                            <option value="reservado" ${datosDiaActual.noche === 'reservado' ? 'selected' : ''}>Reservado / Evento Privado</option>
+                            <option value="mantenimiento" ${datosDiaActual.noche === 'mantenimiento' ? 'selected' : ''}>Mantenimiento / Cerrado</option>
+                        </select>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end; gap:10px;">
+                        <button onclick="cerrarAdminModal()" style="padding:10px 20px; background:#ccc; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Cancelar</button>
+                        <button onclick="guardarCambiosAdmin(${dia}, ${mes}, ${anio})" style="padding:10px 20px; background:#00A8E8; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Guardar Cambios</button>
+                    </div>
+                </div>
+            `;
+            overlay.style.display = 'flex';
+        }
+
+        function cerrarAdminModal() {
+            const overlay = document.getElementById('admin-modal-overlay');
+            if (overlay) overlay.style.display = 'none';
+        }
+
+        function guardarCambiosAdmin(dia, mes, anio) {
+            const nuevoAforo = parseInt(document.getElementById('admin-input-aforo').value) || 0;
+            const bloqueManana = document.getElementById('admin-bloque-manana').value;
+            const bloqueTarde = document.getElementById('admin-bloque-tarde').value;
+            const bloqueNoche = document.getElementById('admin-bloque-noche').value;
+
+            const claveFecha = `${anio}-${mes}-${dia}`;
+            const baseDatos = obtenerDatosGuardados();
+
+            baseDatos[claveFecha] = {
+                aforo: nuevoAforo,
+                manana: bloqueManana,
+                tarde: bloqueTarde,
+                noche: bloqueNoche
+            };
+
+            guardarDatosPermanentes(baseDatos);
+            alert("¡Cambios guardados de forma permanente con éxito!");
+            cerrarAdminModal();
+            renderizarCalendario();
+            actualizarDetallesDia(dia, mes, anio, diaSeleccionado.getDay());
+        }
+
         const textoMesAnio = document.getElementById('mes-anio');
         const cuadriculaDias = document.getElementById('cuadricula-dias');
         const btnAnterior = document.getElementById('btn-anterior');
@@ -619,45 +793,46 @@
             }
         }
 
-        function actualizarDetallesDia(dia, mes, anio, diaSemana, esUltimoDia) {
+        function obtenerEtiquetaHtml(estado) {
+            if (estado === 'reservado') {
+                return '<span class="tag tag-reservado">Exclusivo / Reservado</span>';
+            } else if (estado === 'mantenimiento') {
+                return '<span class="tag tag-reservado" style="background:#fff3cd; color:#856404;">Mantenimiento / Cerrado</span>';
+            } else {
+                return '<span class="tag tag-disponible">Disponible</span>';
+            }
+        }
+
+        function actualizarDetallesDia(dia, mes, anio, diaSemana) {
             fechaMencionada.innerHTML = `Horarios y reservas para el <strong>${dia} de ${meses[mes]} de ${anio}</strong>:`;
 
-            const ocupantes = calcularAforoDia(dia, diaSemana);
+            const claveFecha = `${anio}-${mes}-${dia}`;
+            const baseDatos = obtenerDatosGuardados();
+            const datosDia = baseDatos[claveFecha];
+
+            const ocupantes = datosDia ? datosDia.aforo : calcularAforoDia(dia, diaSemana);
             const porcentaje = Math.round((ocupantes / 40) * 100);
             aforoTexto.textContent = `${ocupantes} / 40 Personas`;
             aforoBarra.style.width = `${porcentaje}%`;
 
-            if (esUltimoDia) {
-                listaHorarios.innerHTML = `
-                    <li class="schedule-item">
-                        <span><strong>09:00 - 13:00</strong> | Ingreso General</span>
-                        <span class="tag tag-disponible">Disponible</span>
-                    </li>
-                    <li class="schedule-item">
-                        <span><strong>14:00 - 18:00</strong> | Evento Privado Reservado</span>
-                        <span class="tag tag-reservado">Exclusivo</span>
-                    </li>
-                    <li class="schedule-item">
-                        <span><strong>18:30 - 21:00</strong> | Ingreso General</span>
-                        <span class="tag tag-disponible">Disponible</span>
-                    </li>
-                `;
-            } else {
-                listaHorarios.innerHTML = `
-                    <li class="schedule-item">
-                        <span><strong>09:00 - 13:00</strong> | Ingreso General</span>
-                        <span class="tag tag-disponible">Disponible</span>
-                    </li>
-                    <li class="schedule-item">
-                        <span><strong>14:00 - 18:00</strong> | Ingreso General</span>
-                        <span class="tag tag-disponible">Disponible</span>
-                    </li>
-                    <li class="schedule-item">
-                        <span><strong>18:30 - 21:00</strong> | Ingreso General</span>
-                        <span class="tag tag-disponible">Disponible</span>
-                    </li>
-                `;
-            }
+            const mananaEstado = datosDia ? datosDia.manana : 'disponible';
+            const tardeEstado = datosDia ? datosDia.tarde : 'disponible';
+            const nocheEstado = datosDia ? datosDia.noche : 'disponible';
+
+            listaHorarios.innerHTML = `
+                <li class="schedule-item">
+                    <span><strong>09:00 - 13:00</strong> | Ingreso Mañana</span>
+                    ${obtenerEtiquetaHtml(mananaEstado)}
+                </li>
+                <li class="schedule-item">
+                    <span><strong>14:00 - 18:00</strong> | Ingreso Tarde</span>
+                    ${obtenerEtiquetaHtml(tardeEstado)}
+                </li>
+                <li class="schedule-item">
+                    <span><strong>18:30 - 21:00</strong> | Ingreso Noche</span>
+                    ${obtenerEtiquetaHtml(nocheEstado)}
+                </li>
+            `;
         }
 
         function renderizarCalendario() {
@@ -669,6 +844,7 @@
 
             const primerDiaMes = new Date(anio, mes, 1).getDay();
             const diasEnMes = new Date(anio, mes + 1, 0).getDate();
+            const baseDatos = obtenerDatosGuardados();
 
             for (let i = 0; i < primerDiaMes; i++) {
                 const espacioVacio = document.createElement('div');
@@ -682,11 +858,12 @@
 
                 const fechaIterante = new Date(anio, mes, dia);
                 const diaSemana = fechaIterante.getDay();
-                const esUltimoDia = (dia === diasEnMes);
+                const claveFecha = `${anio}-${mes}-${dia}`;
+                const datosDia = baseDatos[claveFecha];
 
-                if (esUltimoDia) {
+                // Verificar si tiene alguna restricción en sus bloques o aforo alto
+                if (datosDia && (datosDia.manana === 'reservado' || datosDia.tarde === 'reservado' || datosDia.noche === 'reservado' || datosDia.manana === 'mantenimiento')) {
                     elementoDia.classList.add('evento-ocupado');
-                    elementoDia.title = "Evento Reservado de 14:00 a 18:00";
                 }
 
                 if (diaSeleccionado && 
@@ -699,27 +876,28 @@
                 elementoDia.addEventListener('click', () => {
                     diaSeleccionado = new Date(anio, mes, dia);
                     renderizarCalendario();
-                    actualizarDetallesDia(dia, mes, anio, diaSemana, esUltimoDia);
+                    actualizarDetallesDia(dia, mes, anio, diaSemana);
                 });
 
                 cuadriculaDias.appendChild(elementoDia);
             }
 
             if (!diaSeleccionado || diaSeleccionado.getMonth() !== mes || diaSeleccionado.getFullYear() !== anio) {
+                diaSeleccionado = new Date(anio, mes, 1);
                 const primerDiaSemana = new Date(anio, mes, 1).getDay();
-                actualizarDetallesDia(1, mes, anio, primerDiaSemana, (1 === diasEnMes));
+                actualizarDetallesDia(1, mes, anio, primerDiaSemana);
+            } else {
+                actualizarDetallesDia(diaSeleccionado.getDate(), diaSeleccionado.getMonth(), diaSeleccionado.getFullYear(), diaSeleccionado.getDay());
             }
         }
 
         btnAnterior.addEventListener('click', () => {
             fechaActual.setMonth(fechaActual.getMonth() - 1);
-            diaSeleccionado = null;
             renderizarCalendario();
         });
 
         btnSiguiente.addEventListener('click', () => {
             fechaActual.setMonth(fechaActual.getMonth() + 1);
-            diaSeleccionado = null;
             renderizarCalendario();
         });
 
