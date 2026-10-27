@@ -310,13 +310,25 @@
 
         /* --- MEDIA QUERIES EXCLUSIVAS PARA CELULARES --- */
         @media (max-width: 768px) {
-            .hero {
-                height: auto;
-                min-height: auto;
-                padding: 30px 15px 40px 15px;
-                justify-content: flex-start;
-            }
+         
+    body {
+        overflow-x: hidden; /* Evita cualquier desbordamiento lateral */
+    }
 
+    .hero {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Tamaño optimizado para que no rebase la pantalla */
+        word-break: break-word; /* Evita que las palabras largas fuercen el ancho */
+        padding: 0 10px;
+    }
+
+                                   
             header {
                 position: relative;
                 flex-direction: column;
